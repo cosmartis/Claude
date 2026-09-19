@@ -1,0 +1,70 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"settings": {
+		"appearanceTools": true,
+		"layout": {
+			"contentSize": "760px",
+			"wideSize": "1180px"
+		},
+		"color": {
+			"custom": false,
+			"customGradient": false,
+			"defaultPalette": false,
+			"palette": [
+				{ "slug": "bg", "color": "#0d1117", "name": "Fond" },
+				{ "slug": "bg-alt", "color": "#141a22", "name": "Fond alterné" },
+				{ "slug": "surface", "color": "#1b232e", "name": "Surface" },
+				{ "slug": "border", "color": "#2a3441", "name": "Bordure" },
+				{ "slug": "text", "color": "#e8edf3", "name": "Texte" },
+				{ "slug": "text-muted", "color": "#9aa7b6", "name": "Texte atténué" },
+				{ "slug": "accent", "color": "#10b981", "name": "Accent (émeraude)" },
+				{ "slug": "accent-contrast", "color": "#06251b", "name": "Contraste accent" }
+			]
+		},
+		"typography": {
+			"customFontSize": true,
+			"fontFamilies": [
+				{
+					"slug": "inter",
+					"name": "Inter",
+					"fontFamily": "\"Inter\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif"
+				}
+			],
+			"fontSizes": [
+				{ "slug": "small", "size": "0.9rem", "name": "Petit" },
+				{ "slug": "medium", "size": "1.05rem", "name": "Moyen" },
+				{ "slug": "large", "size": "1.6rem", "name": "Grand" },
+				{ "slug": "x-large", "size": "2.2rem", "name": "Très grand" }
+			]
+		},
+		"spacing": {
+			"units": [ "px", "em", "rem", "%", "vh" ]
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "var(--wp--preset--color--bg)",
+			"text": "var(--wp--preset--color--text)"
+		},
+		"typography": {
+			"fontFamily": "var(--wp--preset--font-family--inter)"
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "var(--wp--preset--color--accent)"
+				}
+			},
+			"button": {
+				"color": {
+					"background": "var(--wp--preset--color--accent)",
+					"text": "var(--wp--preset--color--accent-contrast)"
+				},
+				"border": {
+					"radius": "10px"
+				}
+			}
+		}
+	}
+}

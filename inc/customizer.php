@@ -38,7 +38,7 @@ function cosmartis_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'cosmartis_prix_indicatif',
 		array(
-			'default'           => __( 'À partir de 490 € / mois', 'cosmartis' ),
+			'default'           => __( 'Diagnostic gratuit — 30 minutes, sans engagement', 'cosmartis' ),
 			'sanitize_callback' => 'sanitize_text_field',
 			'transport'         => 'refresh',
 		)
@@ -47,8 +47,8 @@ function cosmartis_customize_register( $wp_customize ) {
 		'cosmartis_prix_indicatif',
 		array(
 			'section'     => 'cosmartis_integrations',
-			'label'       => __( "Prix d'entrée indicatif (affiché dans le hero)", 'cosmartis' ),
-			'description' => __( 'Valeur temporaire — à remplacer par le tarif réel de Bouchra.', 'cosmartis' ),
+			'label'       => __( 'Texte du badge affiché sous le hero', 'cosmartis' ),
+			'description' => __( 'Les tarifs détaillés vivent dans la section « Tarifs » (accueil et page Services) — ce badge reste un message court, jamais un prix isolé ou daté.', 'cosmartis' ),
 			'type'        => 'text',
 		)
 	);

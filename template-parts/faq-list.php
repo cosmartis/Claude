@@ -22,7 +22,7 @@ function cosmartis_faq_items() {
 		),
 		array(
 			'q' => __( 'Est-ce compatible avec mes outils actuels ?', 'cosmartis' ),
-			'a' => __( 'Dans la grande majorité des cas, oui. On s\'appuie sur n8n, qui se connecte à des centaines d\'outils (CRM, emailing, agenda, facturation...).', 'cosmartis' ),
+			'a' => __( 'Dans la grande majorité des cas, oui. On s\'appuie sur des outils d\'automatisation professionnels qui se connectent à des centaines de logiciels (CRM, emailing, agenda, facturation...).', 'cosmartis' ),
 		),
 		array(
 			'q' => __( 'Combien de temps avant d\'avoir un résultat concret ?', 'cosmartis' ),

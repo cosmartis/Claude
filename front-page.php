@@ -2,10 +2,13 @@
 /**
  * Page d'accueil — page de conversion principale.
  *
- * Contenu de section rédigé à titre d'exemple (cf. cosmartis-sync.md :
- * "les formulations ci-dessus sont des exemples à affiner, pas du contenu
- * final"). À remplacer par les textes définitifs de Bouchra sans changer
- * la structure ni l'ordre des sections, qui suit le cahier des charges.
+ * Modifiable depuis wp-admin : si la page réglée comme page d'accueil
+ * (Réglages > Lecture) contient du contenu dans l'éditeur (Gutenberg ou
+ * Elementor une fois installé), ce contenu remplace entièrement les
+ * sections ci-dessous. Tant que la page reste vide, le thème affiche cette
+ * maquette par défaut — rien ne casse avant que Bouchra ne commence à
+ * éditer. Voir inc/block-patterns.php pour des blocs de départ prêts à
+ * insérer (catégorie "Cosmartis" dans l'inserteur de blocs).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +17,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
-$prix_indicatif = get_theme_mod( 'cosmartis_prix_indicatif', __( 'À partir de 490 € / mois', 'cosmartis' ) );
+if ( have_posts() ) {
+	the_post();
+}
+$cosmartis_page_content = trim( (string) get_the_content() );
+
+if ( '' !== $cosmartis_page_content ) :
+	?>
+	<section class="entry-content cosmartis-editable">
+		<div class="container">
+			<?php the_content(); ?>
+		</div>
+	</section>
+	<?php
+else :
+
+$prix_indicatif = get_theme_mod( 'cosmartis_prix_indicatif', __( 'Diagnostic gratuit — 30 minutes, sans engagement', 'cosmartis' ) );
 $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 ?>
 
@@ -38,10 +56,10 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 <section class="trust-bar">
 	<div class="container">
 		<div class="trust-bar-inner">
-			<span class="trust-item"><?php esc_html_e( 'Automatisations n8n', 'cosmartis' ); ?></span>
+			<span class="trust-item"><?php esc_html_e( 'Automatisations sur mesure', 'cosmartis' ); ?></span>
 			<span class="trust-item"><?php esc_html_e( 'IA appliquée au commercial', 'cosmartis' ); ?></span>
-			<span class="trust-item"><?php esc_html_e( 'CRM Notion', 'cosmartis' ); ?></span>
-			<span class="trust-item"><?php esc_html_e( 'Emailing Brevo', 'cosmartis' ); ?></span>
+			<span class="trust-item"><?php esc_html_e( 'CRM centralisé', 'cosmartis' ); ?></span>
+			<span class="trust-item"><?php esc_html_e( 'Emailing automatisé', 'cosmartis' ); ?></span>
 			<span class="trust-item"><?php esc_html_e( 'Conforme RGPD / UE', 'cosmartis' ); ?></span>
 			<span class="trust-item"><?php esc_html_e( 'Sécurité & sauvegardes automatisées', 'cosmartis' ); ?></span>
 		</div>
@@ -98,7 +116,7 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 			</div>
 			<div class="card">
 				<strong><?php esc_html_e( 'Suivi commercial', 'cosmartis' ); ?></strong>
-				<p class="text-muted"><?php esc_html_e( 'Avant : tableur à jour une fois par mois. Après : CRM Notion mis à jour en temps réel, en continu.', 'cosmartis' ); ?></p>
+				<p class="text-muted"><?php esc_html_e( 'Avant : tableur à jour une fois par mois. Après : CRM mis à jour en temps réel, en continu.', 'cosmartis' ); ?></p>
 			</div>
 		</div>
 	</div>
@@ -132,6 +150,17 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 		<p style="text-align:center;margin-top:32px;">
 			<a class="btn btn-secondary" href="<?php echo esc_url( home_url( '/services/' ) ); ?>"><?php esc_html_e( 'Voir le détail des services', 'cosmartis' ); ?></a>
 		</p>
+	</div>
+</section>
+
+<!-- 5bis. Tarifs -->
+<section id="tarifs">
+	<div class="container">
+		<div class="section-head">
+			<span class="eyebrow"><?php esc_html_e( 'Tarifs', 'cosmartis' ); ?></span>
+			<h2><?php esc_html_e( 'Une offre simple, sans surprise', 'cosmartis' ); ?></h2>
+		</div>
+		<?php get_template_part( 'template-parts/pricing-grid' ); ?>
 	</div>
 </section>
 
@@ -196,7 +225,7 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 	</div>
 </section>
 
-<!-- 9. Couverture géographique + stack -->
+<!-- 9. Couverture géographique -->
 <section id="couverture">
 	<div class="container">
 		<div class="section-head">
@@ -208,10 +237,6 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 			<li><?php esc_html_e( 'Belgique francophone', 'cosmartis' ); ?></li>
 			<li><?php esc_html_e( 'Suisse romande', 'cosmartis' ); ?></li>
 			<li><?php esc_html_e( 'Luxembourg', 'cosmartis' ); ?></li>
-			<li><?php esc_html_e( 'Stack : n8n', 'cosmartis' ); ?></li>
-			<li><?php esc_html_e( 'IA', 'cosmartis' ); ?></li>
-			<li><?php esc_html_e( 'Notion', 'cosmartis' ); ?></li>
-			<li><?php esc_html_e( 'Brevo', 'cosmartis' ); ?></li>
 		</ul>
 	</div>
 </section>
@@ -226,4 +251,6 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 </section>
 
 <?php
+endif; // cosmartis_page_content
+
 get_footer();

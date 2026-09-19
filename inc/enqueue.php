@@ -18,6 +18,13 @@ function cosmartis_enqueue_assets() {
 	wp_enqueue_style( 'cosmartis-style', get_stylesheet_uri(), array(), COSMARTIS_VERSION );
 
 	wp_enqueue_script( 'cosmartis-main', COSMARTIS_URI . '/assets/js/main.js', array(), COSMARTIS_VERSION, true );
+	wp_localize_script(
+		'cosmartis-main',
+		'cosmartisSettings',
+		array(
+			'calendlyUrl' => COSMARTIS_CALENDLY_URL,
+		)
+	);
 
 	// Le CTA Calendly (popup) est présent dans le header sur toutes les pages.
 	wp_enqueue_script( 'calendly-widget', 'https://assets.calendly.com/assets/external/widget.js', array(), null, true );

@@ -4,8 +4,14 @@
  * WordPress : page-{slug}.php). Créer la page dans wp-admin avec ce slug
  * (URL finale : /contact/).
  *
- * Contact / Réservation : questionnaire de qualification → score → CRM Notion
- * (via webhook n8n) → widget Calendly inline intégré (pas un simple lien).
+ * Contact / Réservation : questionnaire de qualification → score → CRM
+ * (via webhook configurable) → widget Calendly inline intégré (pas un
+ * simple lien). Le formulaire et l'intégration Calendly restent toujours
+ * actifs, quel que soit le contenu de la page — c'est le canal principal
+ * de génération de leads du site, il ne doit jamais pouvoir disparaître
+ * par une simple édition de contenu. Seule l'introduction ci-dessous
+ * (titre + texte) est modifiable depuis wp-admin : si du contenu est ajouté
+ * dans l'éditeur de cette page, il remplace le titre et le texte par défaut.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,13 +19,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
+
+if ( have_posts() ) {
+	the_post();
+}
+$cosmartis_page_content = trim( (string) get_the_content() );
 ?>
 
 <section class="hero" style="padding-top:56px;padding-bottom:32px;">
 	<div class="container">
-		<span class="eyebrow"><?php esc_html_e( 'Contact / Réservation', 'cosmartis' ); ?></span>
-		<h1><?php esc_html_e( 'Réservez votre diagnostic gratuit', 'cosmartis' ); ?></h1>
-		<p class="lede"><?php esc_html_e( 'Deux minutes de questions pour qu\'on prépare un diagnostic pertinent, puis choisissez votre créneau directement ci-dessous.', 'cosmartis' ); ?></p>
+		<?php if ( '' !== $cosmartis_page_content ) : ?>
+			<span class="eyebrow"><?php esc_html_e( 'Contact / Réservation', 'cosmartis' ); ?></span>
+			<div class="entry-content cosmartis-editable"><?php the_content(); ?></div>
+		<?php else : ?>
+			<span class="eyebrow"><?php esc_html_e( 'Contact / Réservation', 'cosmartis' ); ?></span>
+			<h1><?php esc_html_e( 'Réservez votre diagnostic gratuit', 'cosmartis' ); ?></h1>
+			<p class="lede"><?php esc_html_e( 'Deux minutes de questions pour qu\'on prépare un diagnostic pertinent, puis choisissez votre créneau directement ci-dessous.', 'cosmartis' ); ?></p>
+		<?php endif; ?>
 	</div>
 </section>
 

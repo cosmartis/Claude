@@ -3,7 +3,9 @@
  * Template auto-appliqué à la page de slug "services" (hiérarchie de gabarits
  * WordPress : page-{slug}.php). Créer la page dans wp-admin avec ce slug.
  *
- * Les 4 familles d'automatisation, formulées en bénéfices.
+ * Modifiable depuis wp-admin : si du contenu est ajouté dans l'éditeur de
+ * cette page (Gutenberg ou Elementor), il remplace la maquette par défaut
+ * ci-dessous (les 4 familles d'automatisation + tarifs).
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,6 +14,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
+if ( have_posts() ) {
+	the_post();
+}
+$cosmartis_page_content = trim( (string) get_the_content() );
+
+if ( '' !== $cosmartis_page_content ) :
+	?>
+	<section class="entry-content cosmartis-editable">
+		<div class="container">
+			<?php the_content(); ?>
+		</div>
+	</section>
+	<?php
+else :
+
 $families = array(
 	array(
 		'title'    => __( 'Automatisation commerciale', 'cosmartis' ),
@@ -19,14 +36,14 @@ $families = array(
 		'includes' => array(
 			__( 'Relances automatiques après devis ou premier contact', 'cosmartis' ),
 			__( 'Qualification automatique des prospects entrants', 'cosmartis' ),
-			__( 'Mise à jour en temps réel du CRM Notion', 'cosmartis' ),
+			__( 'Mise à jour en temps réel de votre CRM', 'cosmartis' ),
 		),
 	),
 	array(
 		'title'    => __( 'Automatisation marketing', 'cosmartis' ),
 		'benefit'  => __( 'Votre présence en ligne travaille même quand vous êtes sur le terrain.', 'cosmartis' ),
 		'includes' => array(
-			__( 'Campagnes e-mail automatisées (Brevo)', 'cosmartis' ),
+			__( 'Campagnes e-mail automatisées', 'cosmartis' ),
 			__( 'Contenu blog structuré pour le référencement', 'cosmartis' ),
 			__( 'Suivi des performances centralisé', 'cosmartis' ),
 		),
@@ -77,6 +94,16 @@ $families = array(
 	</div>
 </section>
 
+<section id="tarifs">
+	<div class="container">
+		<div class="section-head">
+			<span class="eyebrow"><?php esc_html_e( 'Tarifs', 'cosmartis' ); ?></span>
+			<h2><?php esc_html_e( 'Une offre simple, sans surprise', 'cosmartis' ); ?></h2>
+		</div>
+		<?php get_template_part( 'template-parts/pricing-grid' ); ?>
+	</div>
+</section>
+
 <section class="cta-final">
 	<div class="container" style="text-align:center;">
 		<h2><?php esc_html_e( 'Quel process aimeriez-vous automatiser en premier ?', 'cosmartis' ); ?></h2>
@@ -85,4 +112,6 @@ $families = array(
 </section>
 
 <?php
+endif; // cosmartis_page_content
+
 get_footer();

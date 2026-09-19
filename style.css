@@ -393,6 +393,94 @@ section + section {
 	border-radius: 999px;
 }
 
+/* Pricing */
+.pricing-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
+}
+
+@media (max-width: 1100px) {
+	.pricing-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 700px) {
+	.pricing-grid { grid-template-columns: 1fr; }
+}
+
+.pricing-card {
+	position: relative;
+	background: var(--c-surface);
+	border: 1px solid var(--c-border);
+	border-radius: var(--c-radius);
+	padding: 32px 28px;
+	display: flex;
+	flex-direction: column;
+}
+
+.pricing-card--featured {
+	border-color: var(--c-accent);
+	box-shadow: 0 0 0 1px var(--c-accent);
+}
+
+.pricing-badge {
+	position: absolute;
+	top: -12px;
+	right: 24px;
+	background: var(--c-accent);
+	color: var(--c-accent-contrast);
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	padding: 6px 14px;
+	border-radius: 999px;
+}
+
+.pricing-amount {
+	font-size: 2rem;
+	font-weight: 800;
+	margin-bottom: 0;
+}
+
+.pricing-unit {
+	margin-bottom: 1em;
+	font-size: 0.9rem;
+}
+
+.pricing-features {
+	list-style: none;
+	margin: 0 0 24px;
+	padding: 0;
+	flex-grow: 1;
+}
+
+.pricing-features li {
+	padding: 8px 0 8px 24px;
+	position: relative;
+	color: var(--c-text-muted);
+	font-size: 0.95rem;
+}
+
+.pricing-features li::before {
+	content: "✓";
+	position: absolute;
+	left: 0;
+	color: var(--c-accent);
+	font-weight: 700;
+}
+
+.pricing-card .btn {
+	margin-top: auto;
+}
+
+.pricing-footnote {
+	text-align: center;
+	font-size: 0.85rem;
+	color: var(--c-text-muted);
+	margin-top: 24px;
+}
+
 /* Calendly embed */
 .calendly-embed-wrap {
 	background: var(--c-surface);
@@ -502,6 +590,43 @@ section + section {
 .qual-form .form-success {
 	display: none;
 	text-align: center;
+}
+
+/* Contenu modifiable via wp-admin (Gutenberg/Elementor) : the_content() */
+.entry-content,
+.cosmartis-editable {
+	max-width: var(--c-max-width);
+}
+
+.entry-content .wp-block-group,
+.cosmartis-editable .wp-block-group {
+	max-width: 100%;
+}
+
+.entry-content .wp-block-button__link,
+.cosmartis-editable .wp-block-button__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 16px 28px;
+	border-radius: var(--c-radius);
+	font-weight: 600;
+	font-size: 1.05rem;
+	text-decoration: none;
+}
+
+.entry-content .wp-block-details,
+.cosmartis-editable .wp-block-details {
+	border-bottom: 1px solid var(--c-border);
+	padding: 20px 0;
+}
+
+.entry-content .wp-block-details summary,
+.cosmartis-editable .wp-block-details summary {
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 1.05rem;
 }
 
 /* Footer */
