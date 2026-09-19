@@ -23,4 +23,16 @@
 			}
 		} );
 	} );
+
+	// Barre CTA sticky (mobile) : masquée en haut de page, apparaît dès
+	// qu'on scrolle et reste fixée en bas de l'écran.
+	var stickyCta = document.querySelector( '.mobile-sticky-cta' );
+	if ( stickyCta ) {
+		var showAfter = 120;
+		var toggleStickyCta = function () {
+			stickyCta.classList.toggle( 'is-visible', window.scrollY > showAfter );
+		};
+		window.addEventListener( 'scroll', toggleStickyCta, { passive: true } );
+		toggleStickyCta();
+	}
 } )();

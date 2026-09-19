@@ -67,11 +67,13 @@ par une demande directe à Claude Code, pas par l'éditeur WordPress.
   constante `COSMARTIS_CALENDLY_URL` (`functions.php`). Toujours affiché
   comme widget (popup dans le header/CTA, widget inline sur la page
   Contact/Réservation), jamais comme simple lien de sortie.
-- **Tarifs** : grille à 5 niveaux (diagnostic gratuit, Première
-  Automatisation, Système Complet, abonnement Suivi & Évolution,
-  Sur-Mesure) centralisée dans `template-parts/pricing-grid.php` — montants,
-  absence de mention HT/TTC et mention légale 293 B conformes aux décisions
-  actées dans `cosmartis-sync.md`. Ne jamais afficher de prix fixe pour
+- **Tarifs** : diagnostic gratuit en intro, puis 3 formules (Première
+  Automatisation, Système Complet, Sur-Mesure) centralisées dans
+  `template-parts/pricing-grid.php` — l'abonnement Suivi & Évolution
+  (199 €/mois) apparaît comme encart dans chacune des 3 formules, à la
+  demande de Bouchra, plutôt que comme offre séparée. Montants, absence de
+  mention HT/TTC et mention légale 293 B conformes aux décisions actées
+  dans `cosmartis-sync.md`. Ne jamais afficher de prix fixe pour
   l'offre Sur-Mesure, ni de volume d'heures pour l'abonnement, ni le TJM
   interne (donnée à usage devis uniquement, jamais publique).
 - **Études de cas** : custom post type `cosmartis_case_study` avec les
@@ -101,7 +103,7 @@ inc/
   customizer.php         Réglages (URL webhook, texte du badge hero)
 template-parts/
   calendly-cta.php        Bouton CTA Calendly réutilisable (popup)
-  pricing-grid.php         Grille tarifaire (5 offres) — source unique des tarifs
+  pricing-grid.php         Grille tarifaire (3 formules + abonnement inclus) — source unique des tarifs
   faq-list.php             Liste FAQ (schema.org FAQPage)
   case-studies-grid.php    Grille d'études de cas (+ fallback générique)
 assets/

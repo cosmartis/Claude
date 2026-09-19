@@ -37,16 +37,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</nav>
 
 		<div class="header-cta">
-			<?php
-			get_template_part(
-				'template-parts/calendly-cta',
-				null,
-				array(
-					'label' => __( 'Réserver mon diagnostic gratuit', 'cosmartis' ),
-					'style' => 'primary',
-				)
-			);
-			?>
+			<div class="header-book-cta">
+				<?php
+				get_template_part(
+					'template-parts/calendly-cta',
+					null,
+					array(
+						'label' => __( 'Réserver mon diagnostic gratuit', 'cosmartis' ),
+						'style' => 'primary',
+					)
+				);
+				?>
+			</div>
 			<button type="button" class="menu-toggle btn btn-secondary" aria-expanded="false" aria-controls="mobile-nav">
 				<?php esc_html_e( 'Menu', 'cosmartis' ); ?>
 			</button>

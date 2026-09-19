@@ -202,18 +202,20 @@ section + section {
 	.primary-nav { display: none; }
 	.menu-toggle { display: inline-flex; }
 
-	/* Header non sticky sur mobile : le CTA de réservation vit dans la
-	   barre sticky en bas d'écran (.mobile-sticky-cta), pas dans le header. */
+	/* Header non sticky sur mobile, et rien entre le logo et le bouton
+	   Menu : le CTA de réservation vit uniquement dans la barre sticky en
+	   bas d'écran (.mobile-sticky-cta). */
 	.site-header {
 		position: static;
 	}
 
-	.header-cta .js-calendly-popup {
+	.header-book-cta {
 		display: none;
 	}
 }
 
-/* CTA sticky en bas d'écran (mobile uniquement) */
+/* CTA sticky en bas d'écran (mobile uniquement) : masqué en haut de page,
+   apparaît au scroll et reste fixé en bas de l'écran (voir assets/js/main.js). */
 .mobile-sticky-cta {
 	display: none;
 }
@@ -230,6 +232,12 @@ section + section {
 		background: rgba(13, 17, 23, 0.95);
 		backdrop-filter: blur(8px);
 		border-top: 1px solid var(--c-border);
+		transform: translateY(100%);
+		transition: transform 0.25s ease;
+	}
+
+	.mobile-sticky-cta.is-visible {
+		transform: translateY(0);
 	}
 
 	.mobile-sticky-cta .btn {
@@ -432,17 +440,33 @@ section + section {
 }
 
 /* Pricing */
+.pricing-diagnostic {
+	text-align: center;
+	max-width: 560px;
+	margin: 0 auto 40px;
+	padding: 14px 24px;
+	background: var(--c-surface);
+	border: 1px solid var(--c-border);
+	border-radius: 999px;
+	font-size: 0.95rem;
+}
+
+.pricing-diagnostic strong {
+	color: var(--c-accent);
+}
+
 .pricing-grid {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 24px;
+	gap: 28px;
+	align-items: stretch;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 980px) {
 	.pricing-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 640px) {
 	.pricing-grid { grid-template-columns: 1fr; }
 }
 
@@ -451,9 +475,10 @@ section + section {
 	background: var(--c-surface);
 	border: 1px solid var(--c-border);
 	border-radius: var(--c-radius);
-	padding: 32px 28px;
+	padding: 40px 32px 32px;
 	display: flex;
 	flex-direction: column;
+	gap: 20px;
 }
 
 .pricing-card--featured {
@@ -463,38 +488,55 @@ section + section {
 
 .pricing-badge {
 	position: absolute;
-	top: -12px;
-	right: 24px;
+	top: -14px;
+	left: 50%;
+	transform: translateX(-50%);
 	background: var(--c-accent);
 	color: var(--c-accent-contrast);
 	font-size: 0.75rem;
 	font-weight: 700;
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
-	padding: 6px 14px;
+	padding: 6px 16px;
 	border-radius: 999px;
+	white-space: nowrap;
+}
+
+.pricing-card-head {
+	text-align: center;
+	padding-bottom: 20px;
+	border-bottom: 1px solid var(--c-border);
+}
+
+.pricing-card-head h3 {
+	margin-bottom: 12px;
 }
 
 .pricing-amount {
-	font-size: 2rem;
+	font-size: 2.4rem;
 	font-weight: 800;
-	margin-bottom: 0;
+	line-height: 1;
+	margin-bottom: 0.3em;
 }
 
 .pricing-unit {
-	margin-bottom: 1em;
+	margin-bottom: 0;
 	font-size: 0.9rem;
+}
+
+.pricing-desc {
+	margin-bottom: 0;
 }
 
 .pricing-features {
 	list-style: none;
-	margin: 0 0 24px;
+	margin: 0;
 	padding: 0;
 	flex-grow: 1;
 }
 
 .pricing-features li {
-	padding: 8px 0 8px 24px;
+	padding: 9px 0 9px 26px;
 	position: relative;
 	color: var(--c-text-muted);
 	font-size: 0.95rem;
@@ -508,15 +550,70 @@ section + section {
 	font-weight: 700;
 }
 
+/* Encart "abonnement inclus", identique dans les 3 formules */
+.pricing-addon {
+	display: flex;
+	gap: 14px;
+	align-items: flex-start;
+	background: var(--c-bg-alt);
+	border: 1px dashed var(--c-border);
+	border-radius: var(--c-radius);
+	padding: 18px 20px;
+}
+
+.pricing-addon-plus {
+	flex-shrink: 0;
+	width: 28px;
+	height: 28px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--c-accent);
+	color: var(--c-accent-contrast);
+	border-radius: 50%;
+	font-weight: 800;
+	font-size: 1rem;
+}
+
+.pricing-addon-body {
+	flex-grow: 1;
+	min-width: 0;
+}
+
+.pricing-addon-head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 6px;
+}
+
+.pricing-addon-label {
+	font-weight: 700;
+}
+
+.pricing-addon-price {
+	font-weight: 800;
+	white-space: nowrap;
+}
+
+.pricing-addon p {
+	margin: 0;
+	font-size: 0.9rem;
+}
+
 .pricing-card .btn {
 	margin-top: auto;
+	width: 100%;
 }
 
 .pricing-footnote {
 	text-align: center;
 	font-size: 0.85rem;
 	color: var(--c-text-muted);
-	margin-top: 24px;
+	margin-top: 32px;
+	line-height: 1.8;
 }
 
 /* Calendly embed */
