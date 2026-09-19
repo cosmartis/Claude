@@ -3,10 +3,8 @@
  * Template auto-appliqué à la page de slug "faq" (hiérarchie de gabarits
  * WordPress : page-{slug}.php).
  *
- * Modifiable depuis wp-admin : si du contenu est ajouté dans l'éditeur de
- * cette page, il remplace la liste de questions codées en dur ci-dessous.
- * Le bloc natif "Détails" (core/details) reproduit le même rendu accordéon
- * — voir le modèle prêt à insérer dans inc/block-patterns.php.
+ * Liste de questions codée en dur, volontairement non modifiable depuis
+ * wp-admin — toute évolution passe par une demande directe à Claude Code.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,11 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-
-if ( have_posts() ) {
-	the_post();
-}
-$cosmartis_page_content = trim( (string) get_the_content() );
 ?>
 
 <section class="hero" style="padding-top:56px;padding-bottom:32px;">
@@ -30,11 +23,7 @@ $cosmartis_page_content = trim( (string) get_the_content() );
 
 <section>
 	<div class="container" style="max-width:760px;">
-		<?php if ( '' !== $cosmartis_page_content ) : ?>
-			<div class="entry-content cosmartis-editable"><?php the_content(); ?></div>
-		<?php else : ?>
-			<?php get_template_part( 'template-parts/faq-list' ); ?>
-		<?php endif; ?>
+		<?php get_template_part( 'template-parts/faq-list' ); ?>
 	</div>
 </section>
 

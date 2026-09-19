@@ -3,9 +3,9 @@
  * Template auto-appliqué à la page de slug "services" (hiérarchie de gabarits
  * WordPress : page-{slug}.php). Créer la page dans wp-admin avec ce slug.
  *
- * Modifiable depuis wp-admin : si du contenu est ajouté dans l'éditeur de
- * cette page (Gutenberg ou Elementor), il remplace la maquette par défaut
- * ci-dessous (les 4 familles d'automatisation + tarifs).
+ * Contenu codé en dur (les 4 familles d'automatisation + tarifs),
+ * volontairement non modifiable depuis wp-admin — toute évolution passe par
+ * une demande directe à Claude Code.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,21 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-
-if ( have_posts() ) {
-	the_post();
-}
-$cosmartis_page_content = trim( (string) get_the_content() );
-
-if ( '' !== $cosmartis_page_content ) :
-	?>
-	<section class="entry-content cosmartis-editable">
-		<div class="container">
-			<?php the_content(); ?>
-		</div>
-	</section>
-	<?php
-else :
 
 $families = array(
 	array(
@@ -112,6 +97,4 @@ $families = array(
 </section>
 
 <?php
-endif; // cosmartis_page_content
-
 get_footer();

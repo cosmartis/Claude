@@ -14,9 +14,6 @@ function cosmartis_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'responsive-embeds' );
-	add_theme_support( 'wp-block-styles' );
-	add_theme_support( 'editor-styles' );
-	add_editor_style( 'assets/css/editor-style.css' );
 
 	register_nav_menus(
 		array(
@@ -29,24 +26,6 @@ function cosmartis_setup() {
 	add_image_size( 'cosmartis-case-thumb', 640, 400, true );
 }
 add_action( 'after_setup_theme', 'cosmartis_setup' );
-
-/**
- * Style de bouton "Popup Calendly" exposé dans l'éditeur de blocs : permet
- * à Bouchra d'ajouter un bouton natif Gutenberg (ou un widget Elementor
- * pointant vers la même classe CSS) qui ouvre le popup Calendly, sans
- * toucher au code — même comportement que le CTA codé en dur du thème
- * (cf. assets/js/main.js).
- */
-function cosmartis_register_block_styles() {
-	register_block_style(
-		'core/button',
-		array(
-			'name'  => 'calendly-popup',
-			'label' => __( 'Popup Calendly', 'cosmartis' ),
-		)
-	);
-}
-add_action( 'init', 'cosmartis_register_block_styles' );
 
 /**
  * Performance: remove default WP cruft that hurts Core Web Vitals

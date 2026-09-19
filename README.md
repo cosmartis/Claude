@@ -1,12 +1,18 @@
 # Cosmartis — Thème WordPress sur-mesure
 
-Thème WordPress pour le site Cosmartis (automatisation commerciale,
-marketing, administrative et opérationnelle pour indépendants et TPE/PME —
-France, Belgique francophone, Suisse romande, Luxembourg).
+Thème WordPress codé à la main (pas de page builder) pour le site Cosmartis
+(automatisation commerciale, marketing, administrative et opérationnelle pour
+indépendants et TPE/PME — France, Belgique francophone, Suisse romande,
+Luxembourg).
 
 Le cahier des charges complet et le suivi de collaboration avec la session
 Claude Cowork vivent dans **`cosmartis-sync.md`** (Google Drive) — à lire
 avant toute évolution de ce thème.
+
+Le contenu du site (accueil, Services, Contact, FAQ) est **codé en dur dans
+le thème, volontairement non modifiable depuis wp-admin** (pas de Gutenberg,
+pas de constructeur de page) : toute évolution de texte ou de structure passe
+par une demande directe à Claude Code, pas par l'éditeur WordPress.
 
 ## Installation
 
@@ -31,61 +37,19 @@ avant toute évolution de ce thème.
    **Études de cas** (menu wp-admin) ; tant qu'aucune n'est publiée, le site
    affiche 3 exemples génériques explicitement signalés comme illustratifs.
 
-## Modifier le site depuis wp-admin (Gutenberg / Elementor)
-
-Le contenu de l'accueil, de la page Services et de la page FAQ (ainsi que
-l'introduction de la page Contact) est **modifiable directement depuis
-l'éditeur WordPress**, sans toucher au code :
-
-- Ouvrir la page concernée dans wp-admin et écrire du contenu dans
-  l'éditeur (Gutenberg, ou Elementor une fois installé et activé sur cette
-  page) : ce contenu **remplace entièrement** la maquette par défaut du
-  thème dès qu'il n'est plus vide.
-- Tant qu'une page reste vide dans l'éditeur, le thème continue d'afficher
-  sa maquette par défaut (celle actuellement en ligne) — rien ne se
-  casse tant que personne n'a commencé à éditer.
-- Pour repartir d'une base cohérente avec la charte graphique plutôt que
-  d'une page blanche, ouvrir l'inserteur de blocs et chercher la catégorie
-  **« Cosmartis »** : des compositions prêtes à l'emploi y sont proposées
-  (en-tête d'accueil, section tarifs, FAQ, études de cas, appel à l'action
-  Calendly — voir `inc/block-patterns.php`).
-- Le bouton d'appel à l'action Calendly (popup, jamais un simple lien) est
-  disponible pour n'importe quel bloc **Bouton** natif : dans les réglages
-  du bloc, choisir le style **« Popup Calendly »**. Le même mécanisme
-  fonctionne avec un widget Bouton Elementor pointant vers un lien
-  quelconque, à condition de lui appliquer la classe CSS
-  `is-style-calendly-popup` (voir `assets/js/main.js`).
-- Les tarifs, la FAQ, les études de cas et le CTA Calendly restent une
-  **source unique** définie dans `template-parts/` : pour les insérer dans
-  un contenu édité, utiliser les shortcodes `[cosmartis_tarifs]`,
-  `[cosmartis_faq]`, `[cosmartis_etudes_de_cas]`, `[cosmartis_calendly]`
-  (bloc « Shortcode » dans Gutenberg, widget « Shortcode » dans Elementor) —
-  les compositions de la catégorie « Cosmartis » les utilisent déjà.
-- La page **Contact** est la seule exception partielle : le questionnaire de
-  qualification et l'intégration Calendly qui suivent restent **toujours
-  actifs** quel que soit le contenu édité (c'est le canal principal de
-  génération de leads du site) — seule l'introduction (titre + texte) en
-  haut de page est remplacée par le contenu édité.
-
 ## Choix techniques
 
-- **Performance** : CSS/JS minimal et propre au thème, Google Fonts (Inter)
-  chargée en `display=swap`, scripts non critiques (Calendly) en footer,
-  suppression des balises `wp_head` inutiles (emoji, oEmbed discovery,
-  RSD/WLW) pour préserver les Core Web Vitals sur l'hébergement mutualisé.
-  Le thème continue de fonctionner sans aucun plugin par défaut ; s'il est
-  installé, un constructeur de page (Elementor) ou l'éditeur de blocs natif
-  (Gutenberg) restent compatibles grâce au rendu `the_content()` déployé sur
-  les pages listées ci-dessus (voir « Modifier le site depuis wp-admin »).
+- **Performance** : pas de page builder, CSS/JS minimal et propre au thème,
+  Google Fonts (Inter) chargée en `display=swap`, scripts non critiques
+  (Calendly) en footer, suppression des balises `wp_head` inutiles
+  (emoji, oEmbed discovery, RSD/WLW) pour préserver les Core Web Vitals.
 - **Sécurité / sauvegardes** : aucune donnée sensible stockée côté thème ;
   la config sécurité/sauvegardes automatisées dépend de l'hébergement
   choisi (voir `cosmartis-sync.md`).
-- **Minimum de plugins par défaut** : le thème fonctionne sans aucune
-  dépendance à un plugin (pas d'ACF — les champs des études de cas
-  utilisent l'API native des meta boxes WordPress ; pas de plugin de
-  formulaire — le questionnaire de qualification est du HTML/JS natif qui
-  appelle une route REST du thème). Un constructeur de page reste une
-  option, pas une obligation.
+- **Minimum de plugins** : le thème n'a aucune dépendance à un plugin
+  (pas d'ACF — les champs des études de cas utilisent l'API native des
+  meta boxes WordPress ; pas de plugin de formulaire — le questionnaire de
+  qualification est du HTML/JS natif qui appelle une route REST du thème).
 - **Aucun outil tiers nommé sur le site public** : les pages, textes et
   menus visibles par les visiteurs ne mentionnent jamais les noms des
   outils utilisés en coulisses (automatisation, CRM, emailing...) — seules
@@ -118,33 +82,30 @@ l'éditeur WordPress**, sans toucher au code :
 ## Arborescence
 
 ```
-theme.json               Palette, typographie et styles pour Gutenberg
 functions.php
 style.css
 header.php / footer.php
-front-page.php          Accueil — the_content() si édité, sinon maquette par défaut
+front-page.php          Accueil (page de conversion principale)
 page.php                Gabarit générique (à propos, mentions légales, etc.)
-page-services.php        /services/ — the_content() si édité, sinon 4 familles + tarifs
-page-contact.php         /contact/ — questionnaire + Calendly inline (toujours actifs)
-page-faq.php             /faq/ — the_content() si édité, sinon FAQ par défaut
+page-services.php        /services/ — 4 familles d'automatisation + tarifs
+page-contact.php         /contact/  (questionnaire + Calendly inline)
+page-faq.php             /faq/
 index.php / single.php   Blog
 archive-cosmartis_case_study.php
 single-cosmartis_case_study.php
 inc/
-  setup.php              Theme support, menus, styles éditeur, nettoyage <head>
+  setup.php              Theme support, menus, nettoyage <head>
   enqueue.php            CSS/JS, Calendly, localisation JS
   case-studies-cpt.php   CPT études de cas + meta boxes natives
   n8n-integration.php    Route REST qualification → webhook configurable
   customizer.php         Réglages (URL webhook, texte du badge hero)
-  shortcodes.php         [cosmartis_tarifs] [cosmartis_faq] [cosmartis_etudes_de_cas] [cosmartis_calendly]
-  block-patterns.php     Compositions Gutenberg prêtes à insérer (catégorie "Cosmartis")
 template-parts/
   calendly-cta.php        Bouton CTA Calendly réutilisable (popup)
   pricing-grid.php         Grille tarifaire (5 offres) — source unique des tarifs
   faq-list.php             Liste FAQ (schema.org FAQPage)
   case-studies-grid.php    Grille d'études de cas (+ fallback générique)
 assets/
-  css/editor-style.css     Aperçu Gutenberg aligné sur la charte graphique
-  js/main.js               Menu mobile + init popup Calendly (coeur + boutons édités)
+  css/ (réservé, tout le CSS de base est dans style.css)
+  js/main.js               Menu mobile + init popup Calendly
   js/qualification-form.js Questionnaire multi-étapes + scoring + REST + prefill Calendly
 ```

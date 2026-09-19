@@ -2,13 +2,9 @@
 /**
  * Page d'accueil — page de conversion principale.
  *
- * Modifiable depuis wp-admin : si la page réglée comme page d'accueil
- * (Réglages > Lecture) contient du contenu dans l'éditeur (Gutenberg ou
- * Elementor une fois installé), ce contenu remplace entièrement les
- * sections ci-dessous. Tant que la page reste vide, le thème affiche cette
- * maquette par défaut — rien ne casse avant que Bouchra ne commence à
- * éditer. Voir inc/block-patterns.php pour des blocs de départ prêts à
- * insérer (catégorie "Cosmartis" dans l'inserteur de blocs).
+ * Contenu codé en dur dans ce fichier, volontairement non modifiable depuis
+ * wp-admin — toute évolution de contenu ou de structure passe par une
+ * demande directe à Claude Code, pas par l'éditeur WordPress.
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,21 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 get_header();
-
-if ( have_posts() ) {
-	the_post();
-}
-$cosmartis_page_content = trim( (string) get_the_content() );
-
-if ( '' !== $cosmartis_page_content ) :
-	?>
-	<section class="entry-content cosmartis-editable">
-		<div class="container">
-			<?php the_content(); ?>
-		</div>
-	</section>
-	<?php
-else :
 
 $prix_indicatif = get_theme_mod( 'cosmartis_prix_indicatif', __( 'Diagnostic gratuit — 30 minutes, sans engagement', 'cosmartis' ) );
 $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
@@ -251,6 +232,4 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 </section>
 
 <?php
-endif; // cosmartis_page_content
-
 get_footer();

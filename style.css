@@ -592,43 +592,6 @@ section + section {
 	text-align: center;
 }
 
-/* Contenu modifiable via wp-admin (Gutenberg/Elementor) : the_content() */
-.entry-content,
-.cosmartis-editable {
-	max-width: var(--c-max-width);
-}
-
-.entry-content .wp-block-group,
-.cosmartis-editable .wp-block-group {
-	max-width: 100%;
-}
-
-.entry-content .wp-block-button__link,
-.cosmartis-editable .wp-block-button__link {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	padding: 16px 28px;
-	border-radius: var(--c-radius);
-	font-weight: 600;
-	font-size: 1.05rem;
-	text-decoration: none;
-}
-
-.entry-content .wp-block-details,
-.cosmartis-editable .wp-block-details {
-	border-bottom: 1px solid var(--c-border);
-	padding: 20px 0;
-}
-
-.entry-content .wp-block-details summary,
-.cosmartis-editable .wp-block-details summary {
-	cursor: pointer;
-	font-weight: 600;
-	font-size: 1.05rem;
-}
-
 /* Footer */
 .site-footer {
 	border-top: 1px solid var(--c-border);
