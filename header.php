@@ -66,4 +66,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</nav>
 </header>
 
+<div class="mobile-sticky-cta">
+	<?php
+	get_template_part(
+		'template-parts/calendly-cta',
+		null,
+		array(
+			'label' => __( 'Réserver mon diagnostic gratuit', 'cosmartis' ),
+			'style' => 'primary',
+		)
+	);
+	?>
+</div>
+
 <main id="main">
