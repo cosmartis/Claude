@@ -17,3 +17,4 @@ require COSMARTIS_DIR . '/inc/enqueue.php';
 require COSMARTIS_DIR . '/inc/case-studies-cpt.php';
 require COSMARTIS_DIR . '/inc/n8n-integration.php';
 require COSMARTIS_DIR . '/inc/customizer.php';
+require COSMARTIS_DIR . '/inc/consent.php';

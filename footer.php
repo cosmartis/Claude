@@ -42,6 +42,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php
 				}
 				?>
+				<ul>
+					<li><a href="#" class="js-consent-manage"><?php esc_html_e( 'Gérer les cookies', 'cosmartis' ); ?></a></li>
+				</ul>
 			</div>
 
 			<div>

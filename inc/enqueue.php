@@ -32,9 +32,16 @@ function cosmartis_enqueue_assets() {
 
 	wp_enqueue_script( 'cosmartis-main', COSMARTIS_URI . '/assets/js/main.js', array(), cosmartis_asset_version( '/assets/js/main.js' ), true );
 
-	// Le CTA Calendly (popup) est présent dans le header sur toutes les pages.
-	wp_enqueue_script( 'calendly-widget', 'https://assets.calendly.com/assets/external/widget.js', array(), null, true );
-	wp_enqueue_style( 'calendly-widget-css', 'https://assets.calendly.com/assets/external/widget.css', array(), null );
+	// Le CTA Calendly (popup) est présent dans le header sur toutes les pages,
+	// mais le script tiers n'est enqueue au chargement que si le visiteur a
+	// déjà accepté les cookies fonctionnels lors d'une visite précédente
+	// (cf. inc/consent.php). Sinon, assets/js/consent.js l'injecte dès que le
+	// consentement est donné, et en son absence le bouton CTA se rabat sur un
+	// simple lien externe vers calendly.com (voir assets/js/main.js).
+	if ( cosmartis_has_functional_consent() ) {
+		wp_enqueue_script( 'calendly-widget', 'https://assets.calendly.com/assets/external/widget.js', array(), null, true );
+		wp_enqueue_style( 'calendly-widget-css', 'https://assets.calendly.com/assets/external/widget.css', array(), null );
+	}
 
 	// is_page('contact') plutôt que is_page_template() : le gabarit page-contact.php
 	// s'applique automatiquement par slug (hiérarchie WordPress), sans sélection

@@ -781,3 +781,128 @@ section + section {
 	flex-wrap: wrap;
 	gap: 12px;
 }
+
+/* Bannière de consentement aux cookies (RGPD) --------------------------- */
+
+.cookie-consent-banner {
+	position: fixed;
+	inset: auto 0 0 0;
+	z-index: 1000;
+	background: var(--c-surface);
+	border-top: 1px solid var(--c-border);
+	box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.cookie-consent-banner[hidden] {
+	display: none;
+}
+
+.cookie-consent-banner__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 20px;
+	padding: 20px 0;
+}
+
+.cookie-consent-banner__text {
+	flex: 1 1 420px;
+	margin: 0;
+	color: var(--c-text-muted);
+	font-size: 0.92rem;
+	line-height: 1.6;
+}
+
+.cookie-consent-banner__text a {
+	color: var(--c-accent);
+}
+
+.cookie-consent-banner__actions {
+	display: flex;
+	gap: 12px;
+	flex-wrap: wrap;
+	flex: 0 0 auto;
+}
+
+.cookie-consent-banner__actions .btn {
+	padding: 12px 20px;
+	font-size: 0.95rem;
+}
+
+.cookie-consent-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 1001;
+	background: rgba(4, 8, 13, 0.72);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.cookie-consent-modal[hidden] {
+	display: none;
+}
+
+.cookie-consent-modal__inner {
+	background: var(--c-bg-alt);
+	border: 1px solid var(--c-border);
+	border-radius: var(--c-radius);
+	max-width: 520px;
+	width: 100%;
+	max-height: 85vh;
+	overflow-y: auto;
+	padding: 28px;
+}
+
+.cookie-consent-modal__inner h2 {
+	margin-top: 0;
+	color: var(--c-text);
+	font-size: 1.25rem;
+}
+
+.cookie-consent-modal__category {
+	border-top: 1px solid var(--c-border);
+	padding: 16px 0;
+}
+
+.cookie-consent-modal__category-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+}
+
+.cookie-consent-modal__category-head label {
+	font-weight: 600;
+	color: var(--c-text);
+}
+
+.cookie-consent-modal__category-head input[type="checkbox"] {
+	width: 20px;
+	height: 20px;
+	accent-color: var(--c-accent);
+}
+
+.cookie-consent-modal__category p {
+	margin: 8px 0 0;
+}
+
+.cookie-consent-modal__actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+	margin-top: 20px;
+}
+
+@media (max-width: 640px) {
+	.cookie-consent-banner__inner {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.cookie-consent-banner__actions .btn {
+		flex: 1;
+	}
+}
