@@ -112,7 +112,7 @@ $abonnement = array(
 				null,
 				array(
 					'label' => $formule['cta_label'],
-					'style' => ! empty( $formule['featured'] ) ? 'primary' : 'secondary',
+					'style' => 'primary',
 				)
 			);
 			?>
