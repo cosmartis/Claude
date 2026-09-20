@@ -30,6 +30,8 @@ Text Domain: cosmartis
 
 html {
 	scroll-behavior: smooth;
+	overflow-x: hidden;
+	max-width: 100%;
 }
 
 body {
@@ -40,6 +42,8 @@ body {
 	font-size: 17px;
 	line-height: 1.6;
 	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	max-width: 100%;
 }
 
 img {
@@ -595,7 +599,6 @@ section + section {
 
 .pricing-addon-price {
 	font-weight: 800;
-	white-space: nowrap;
 }
 
 .pricing-addon p {
