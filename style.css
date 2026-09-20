@@ -900,9 +900,25 @@ section + section {
 	.cookie-consent-banner__inner {
 		flex-direction: column;
 		align-items: stretch;
+		justify-content: flex-start;
+		padding: 16px 0 calc(16px + env(safe-area-inset-bottom));
+	}
+
+	/* flex-basis suit l'axe principal : en colonne, les 420px voulus comme
+	   largeur de départ (mode ligne desktop) deviendraient une hauteur. */
+	.cookie-consent-banner__text {
+		flex: 0 1 auto;
+	}
+
+	/* Empilés en pleine largeur (comme le CTA sticky et les cartes tarifaires) :
+	   sur une seule ligne, "Refuser"/"Personnaliser"/"Accepter" avec flex:1
+	   débordent car un mot comme "Personnaliser" ne peut pas rétrécir sous sa
+	   largeur intrinsèque (min-width:auto par défaut sur les flex items). */
+	.cookie-consent-banner__actions {
+		flex-direction: column;
 	}
 
 	.cookie-consent-banner__actions .btn {
-		flex: 1;
+		width: 100%;
 	}
 }
