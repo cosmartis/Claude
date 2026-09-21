@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				if ( has_nav_menu( 'footer' ) ) {
 					wp_nav_menu( array( 'theme_location' => 'footer', 'container' => false ) );
 				} else {
-					cosmartis_fallback_primary_menu();
+					cosmartis_fallback_footer_menu();
 				}
 				?>
 			</div>

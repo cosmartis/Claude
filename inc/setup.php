@@ -71,3 +71,26 @@ function cosmartis_fallback_primary_menu() {
 	}
 	echo '</ul>';
 }
+
+/**
+ * Fallback menu du pied de page quand aucun menu "footer" n'est assigné :
+ * reprend la navigation principale et y ajoute FAQ et À propos, qui vivent
+ * dans le footer plutôt que dans le header.
+ */
+function cosmartis_fallback_footer_menu() {
+	$pages = array(
+		'/services/'      => __( 'Services', 'cosmartis' ),
+		'/services/#tarifs' => __( 'Tarifs', 'cosmartis' ),
+		'/cas-usage/'     => __( "Cas d'usage", 'cosmartis' ),
+		'/etudes-de-cas/' => __( 'Études de cas', 'cosmartis' ),
+		'/blog/'          => __( 'Blog', 'cosmartis' ),
+		'/contact/'       => __( 'Contact', 'cosmartis' ),
+		'/a-propos/'      => __( 'À propos', 'cosmartis' ),
+		'/faq/'           => __( 'FAQ', 'cosmartis' ),
+	);
+	echo '<ul>';
+	foreach ( $pages as $path => $label ) {
+		printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( $path ) ), esc_html( $label ) );
+	}
+	echo '</ul>';
+}
