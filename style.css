@@ -28,6 +28,10 @@ Text Domain: cosmartis
 	box-sizing: border-box;
 }
 
+[hidden] {
+	display: none !important;
+}
+
 html {
 	scroll-behavior: smooth;
 	overflow-x: hidden;
