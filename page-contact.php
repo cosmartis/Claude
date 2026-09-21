@@ -86,8 +86,9 @@ get_header();
 					<?php esc_html_e( 'Votre message (optionnel)', 'cosmartis' ); ?>
 					<textarea id="qf-message" name="message" rows="4"></textarea>
 				</label>
-				<p class="form-error" id="qf-error"><?php esc_html_e( 'Merci de compléter les champs requis.', 'cosmartis' ); ?></p>
 			</fieldset>
+
+			<p class="form-error" id="qf-error"><?php esc_html_e( 'Merci de compléter les champs requis.', 'cosmartis' ); ?></p>
 
 			<div class="form-success" id="qf-success">
 				<h3><?php esc_html_e( 'Merci !', 'cosmartis' ); ?></h3>
