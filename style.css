@@ -684,7 +684,8 @@ section + section {
 .qual-form input[type="text"],
 .qual-form input[type="email"],
 .qual-form input[type="tel"],
-.qual-form select {
+.qual-form select,
+.qual-form textarea {
 	width: 100%;
 	padding: 12px 14px;
 	margin-top: 6px;
@@ -694,6 +695,10 @@ section + section {
 	color: var(--c-text);
 	font-family: var(--c-font);
 	font-size: 1rem;
+}
+
+.qual-form textarea {
+	resize: vertical;
 }
 
 .qual-form .choice-group {

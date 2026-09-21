@@ -40,7 +40,14 @@ function cosmartis_handle_qualification_submission( WP_REST_Request $request ) {
 
 	$answers = array();
 	foreach ( $params['answers'] as $key => $value ) {
-		$answers[ sanitize_key( $key ) ] = is_scalar( $value ) ? sanitize_text_field( $value ) : '';
+		$key = sanitize_key( $key );
+		if ( ! is_scalar( $value ) ) {
+			$answers[ $key ] = '';
+		} elseif ( 'message' === $key ) {
+			$answers[ $key ] = sanitize_textarea_field( $value );
+		} else {
+			$answers[ $key ] = sanitize_text_field( $value );
+		}
 	}
 
 	$score = isset( $params['score'] ) ? absint( $params['score'] ) : 0;
@@ -49,6 +56,8 @@ function cosmartis_handle_qualification_submission( WP_REST_Request $request ) {
 		'first_name' => isset( $answers['prenom'] ) ? $answers['prenom'] : '',
 		'email'      => isset( $answers['email'] ) && is_email( $answers['email'] ) ? $answers['email'] : '',
 		'phone'      => isset( $answers['telephone'] ) ? $answers['telephone'] : '',
+		'company'    => isset( $answers['entreprise'] ) ? $answers['entreprise'] : '',
+		'message'    => isset( $answers['message'] ) ? $answers['message'] : '',
 		'answers'    => $answers,
 		'score'      => $score,
 		'source'     => 'site-cosmartis-diagnostic',
@@ -78,7 +87,7 @@ function cosmartis_handle_qualification_submission( WP_REST_Request $request ) {
 	if ( ! $forwarded ) {
 		cosmartis_store_lead_fallback( $lead );
 		wp_mail(
-			get_option( 'admin_email' ),
+			'contact@cosmartis.com',
 			__( '[Cosmartis] Nouveau prospect (diagnostic) — à relayer manuellement vers Notion', 'cosmartis' ),
 			"Le webhook n8n n'est pas encore configuré (ou a échoué). Détails du prospect :\n\n" . wp_json_encode( $lead, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE )
 		);

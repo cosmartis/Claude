@@ -44,6 +44,10 @@ get_header();
 					<?php esc_html_e( 'Téléphone (optionnel)', 'cosmartis' ); ?>
 					<input type="tel" id="qf-telephone" name="telephone" />
 				</label>
+				<label for="qf-entreprise">
+					<?php esc_html_e( 'Entreprise (optionnel)', 'cosmartis' ); ?>
+					<input type="text" id="qf-entreprise" name="entreprise" />
+				</label>
 			</fieldset>
 
 			<fieldset data-step="2">
@@ -77,6 +81,10 @@ get_header();
 						<label><input type="radio" name="delai" value="1_3_mois" data-score="2" /> <?php esc_html_e( 'Dans 1 à 3 mois', 'cosmartis' ); ?></label>
 						<label><input type="radio" name="delai" value="exploration" data-score="1" /> <?php esc_html_e( 'Je me renseigne pour l\'instant', 'cosmartis' ); ?></label>
 					</span>
+				</label>
+				<label for="qf-message">
+					<?php esc_html_e( 'Votre message (optionnel)', 'cosmartis' ); ?>
+					<textarea id="qf-message" name="message" rows="4"></textarea>
 				</label>
 				<p class="form-error" id="qf-error"><?php esc_html_e( 'Merci de compléter les champs requis.', 'cosmartis' ); ?></p>
 			</fieldset>
