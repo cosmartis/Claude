@@ -97,7 +97,7 @@ get_header();
 			<div class="form-nav">
 				<button type="button" class="btn btn-secondary" id="qf-prev" hidden><?php esc_html_e( 'Précédent', 'cosmartis' ); ?></button>
 				<button type="button" class="btn btn-primary" id="qf-next"><?php esc_html_e( 'Suivant', 'cosmartis' ); ?></button>
-				<button type="submit" class="btn btn-primary" id="qf-submit" hidden><?php esc_html_e( 'Voir les créneaux disponibles', 'cosmartis' ); ?></button>
+				<button type="submit" class="btn btn-primary" id="qf-submit" hidden data-calendly-url="<?php echo esc_url( COSMARTIS_CALENDLY_URL ); ?>"><?php esc_html_e( 'Voir les créneaux disponibles', 'cosmartis' ); ?></button>
 			</div>
 		</form>
 	</div>

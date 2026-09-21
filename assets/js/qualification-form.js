@@ -5,10 +5,26 @@
 	var embedContainer = document.getElementById( 'calendly-inline-embed' );
 
 	function initCalendly( prefill ) {
-		if ( ! window.Calendly || ! embedContainer ) {
+		if ( ! embedContainer ) {
 			return;
 		}
 		var baseUrl = embedContainer.getAttribute( 'data-calendly-url' );
+
+		if ( ! window.Calendly ) {
+			// Widget non chargé (cookies fonctionnels non acceptés, ou script
+			// tiers indisponible) : on garde un lien direct vers Calendly pour
+			// que la prise de rendez-vous reste possible.
+			embedContainer.innerHTML = '';
+			var link = document.createElement( 'a' );
+			link.href = baseUrl;
+			link.target = '_blank';
+			link.rel = 'noopener';
+			link.className = 'btn btn-primary';
+			link.textContent = cosmartisQualForm.calendlyLinkLabel || 'Choisir mon créneau sur Calendly';
+			embedContainer.appendChild( link );
+			return;
+		}
+
 		embedContainer.innerHTML = '';
 		window.Calendly.initInlineWidget( {
 			url: baseUrl,

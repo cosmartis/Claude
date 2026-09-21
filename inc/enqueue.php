@@ -52,9 +52,10 @@ function cosmartis_enqueue_assets() {
 			'cosmartis-qualification-form',
 			'cosmartisQualForm',
 			array(
-				'restUrl'      => esc_url_raw( rest_url( 'cosmartis/v1/qualification' ) ),
-				'nonce'        => wp_create_nonce( 'wp_rest' ),
-				'sendingLabel' => __( 'Envoi…', 'cosmartis' ),
+				'restUrl'           => esc_url_raw( rest_url( 'cosmartis/v1/qualification' ) ),
+				'nonce'             => wp_create_nonce( 'wp_rest' ),
+				'sendingLabel'      => __( 'Envoi…', 'cosmartis' ),
+				'calendlyLinkLabel' => __( 'Choisir mon créneau sur Calendly', 'cosmartis' ),
 			)
 		);
 	}
