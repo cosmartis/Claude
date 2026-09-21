@@ -63,8 +63,7 @@ function cosmartis_fallback_primary_menu() {
 		'/cas-usage/'     => __( "Cas d'usage", 'cosmartis' ),
 		'/etudes-de-cas/' => __( 'Études de cas', 'cosmartis' ),
 		'/blog/'          => __( 'Blog', 'cosmartis' ),
-		'/a-propos/'      => __( 'À propos', 'cosmartis' ),
-		'/faq/'           => __( 'FAQ', 'cosmartis' ),
+		'/contact/'       => __( 'Contact', 'cosmartis' ),
 	);
 	echo '<ul>';
 	foreach ( $pages as $path => $label ) {
