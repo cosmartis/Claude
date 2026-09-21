@@ -21,9 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 <header class="site-header">
 	<div class="container">
 		<div class="site-branding">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-				<?php bloginfo( 'name' ); ?>
-			</a>
+			<?php if ( has_custom_logo() ) : ?>
+				<?php the_custom_logo(); ?>
+			<?php else : ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+					<?php bloginfo( 'name' ); ?>
+				</a>
+			<?php endif; ?>
 		</div>
 
 		<nav class="primary-nav" aria-label="<?php esc_attr_e( 'Menu principal', 'cosmartis' ); ?>">

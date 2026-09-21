@@ -14,6 +14,16 @@ function cosmartis_setup() {
 	add_theme_support( 'automatic-feed-links' );
 	add_theme_support( 'align-wide' );
 	add_theme_support( 'responsive-embeds' );
+	add_theme_support(
+		'custom-logo',
+		array(
+			'height'      => 60,
+			'width'       => 200,
+			'flex-height' => true,
+			'flex-width'  => true,
+			'header-text' => array( 'site-title', 'site-description' ),
+		)
+	);
 
 	register_nav_menus(
 		array(
