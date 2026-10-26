@@ -53,23 +53,54 @@ function cosmartis_trim_head() {
 add_action( 'init', 'cosmartis_trim_head' );
 
 /**
+ * Liens « Tarifs » : une entrée par grille tarifaire de la page Services.
+ */
+function cosmartis_tarifs_links() {
+	return array(
+		'/services/#tarifs'     => __( 'Automatisations', 'cosmartis' ),
+		'/services/#sites'      => __( 'Création de site internet', 'cosmartis' ),
+		'/services/#tout-en-un' => __( 'Offres tout-en-un', 'cosmartis' ),
+	);
+}
+
+/**
+ * Affiche une liste de liens ; une valeur tableau (label + children) devient
+ * un élément avec sous-menu.
+ */
+function cosmartis_render_menu_items( $pages ) {
+	echo '<ul>';
+	foreach ( $pages as $path => $item ) {
+		if ( is_array( $item ) ) {
+			printf( '<li class="menu-item-has-children"><a href="%s">%s</a><ul class="sub-menu">', esc_url( home_url( $path ) ), esc_html( $item['label'] ) );
+			foreach ( $item['children'] as $child_path => $child_label ) {
+				printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( $child_path ) ), esc_html( $child_label ) );
+			}
+			echo '</ul></li>';
+		} else {
+			printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( $path ) ), esc_html( $item ) );
+		}
+	}
+	echo '</ul>';
+}
+
+/**
  * Fallback menu when no "primary" menu is assigned yet in wp-admin,
  * so the sitemap from the cahier des charges is visible out of the box.
  */
 function cosmartis_fallback_primary_menu() {
-	$pages = array(
-		'/services/'      => __( 'Services', 'cosmartis' ),
-		'/services/#tarifs' => __( 'Tarifs', 'cosmartis' ),
-		'/cas-usage/'     => __( "Cas d'usage", 'cosmartis' ),
-		'/etudes-de-cas/' => __( 'Études de cas', 'cosmartis' ),
-		'/blog/'          => __( 'Blog', 'cosmartis' ),
-		'/contact/'       => __( 'Contact', 'cosmartis' ),
+	cosmartis_render_menu_items(
+		array(
+			'/services/'        => __( 'Services', 'cosmartis' ),
+			'/services/#tarifs' => array(
+				'label'    => __( 'Tarifs', 'cosmartis' ),
+				'children' => cosmartis_tarifs_links(),
+			),
+			'/cas-usage/'       => __( "Cas d'usage", 'cosmartis' ),
+			'/etudes-de-cas/'   => __( 'Études de cas', 'cosmartis' ),
+			'/blog/'            => __( 'Blog', 'cosmartis' ),
+			'/contact/'         => __( 'Contact', 'cosmartis' ),
+		)
 	);
-	echo '<ul>';
-	foreach ( $pages as $path => $label ) {
-		printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( $path ) ), esc_html( $label ) );
-	}
-	echo '</ul>';
 }
 
 /**
@@ -78,19 +109,19 @@ function cosmartis_fallback_primary_menu() {
  * dans le footer plutôt que dans le header.
  */
 function cosmartis_fallback_footer_menu() {
-	$pages = array(
-		'/services/'      => __( 'Services', 'cosmartis' ),
-		'/services/#tarifs' => __( 'Tarifs', 'cosmartis' ),
-		'/cas-usage/'     => __( "Cas d'usage", 'cosmartis' ),
-		'/etudes-de-cas/' => __( 'Études de cas', 'cosmartis' ),
-		'/blog/'          => __( 'Blog', 'cosmartis' ),
-		'/contact/'       => __( 'Contact', 'cosmartis' ),
-		'/a-propos/'      => __( 'À propos', 'cosmartis' ),
-		'/faq/'           => __( 'FAQ', 'cosmartis' ),
+	cosmartis_render_menu_items(
+		array(
+			'/services/'        => __( 'Services', 'cosmartis' ),
+			'/services/#tarifs' => array(
+				'label'    => __( 'Tarifs', 'cosmartis' ),
+				'children' => cosmartis_tarifs_links(),
+			),
+			'/cas-usage/'       => __( "Cas d'usage", 'cosmartis' ),
+			'/etudes-de-cas/'   => __( 'Études de cas', 'cosmartis' ),
+			'/blog/'            => __( 'Blog', 'cosmartis' ),
+			'/contact/'         => __( 'Contact', 'cosmartis' ),
+			'/a-propos/'        => __( 'À propos', 'cosmartis' ),
+			'/faq/'             => __( 'FAQ', 'cosmartis' ),
+		)
 	);
-	echo '<ul>';
-	foreach ( $pages as $path => $label ) {
-		printf( '<li><a href="%s">%s</a></li>', esc_url( home_url( $path ) ), esc_html( $label ) );
-	}
-	echo '</ul>';
 }
