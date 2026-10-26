@@ -69,56 +69,16 @@ $abonnement = array(
 	<?php esc_html_e( '— 30 minutes, sans engagement, avant toute proposition.', 'cosmartis' ); ?>
 </p>
 
-<div class="pricing-grid">
-	<?php foreach ( $formules as $formule ) : ?>
-		<div class="pricing-card<?php echo ! empty( $formule['featured'] ) ? ' pricing-card--featured' : ''; ?>">
-			<?php if ( ! empty( $formule['badge'] ) ) : ?>
-				<span class="pricing-badge"><?php echo esc_html( $formule['badge'] ); ?></span>
-			<?php endif; ?>
-
-			<div class="pricing-card-head">
-				<h3><?php echo esc_html( $formule['title'] ); ?></h3>
-				<p class="pricing-amount"><?php echo esc_html( $formule['price'] ); ?></p>
-				<p class="pricing-unit text-muted"><?php echo esc_html( $formule['unit'] ); ?></p>
-			</div>
-
-			<p class="text-muted pricing-desc"><?php echo esc_html( $formule['desc'] ); ?></p>
-
-			<?php if ( ! empty( $formule['features'] ) ) : ?>
-				<ul class="pricing-features">
-					<?php foreach ( $formule['features'] as $feature ) : ?>
-						<li><?php echo esc_html( $feature ); ?></li>
-					<?php endforeach; ?>
-				</ul>
-			<?php endif; ?>
-
-			<div class="pricing-addon">
-				<span class="pricing-addon-plus">+</span>
-				<div class="pricing-addon-body">
-					<div class="pricing-addon-head">
-						<span class="pricing-addon-label"><?php echo esc_html( $abonnement['label'] ); ?></span>
-						<span class="pricing-addon-price">
-							<?php echo esc_html( $abonnement['price'] ); ?>
-							<span class="text-muted"><?php echo esc_html( $abonnement['unit'] ); ?></span>
-						</span>
-					</div>
-					<p class="text-muted"><?php echo esc_html( $abonnement['desc'] ); ?></p>
-				</div>
-			</div>
-
-			<?php
-			get_template_part(
-				'template-parts/calendly-cta',
-				null,
-				array(
-					'label' => $formule['cta_label'],
-					'style' => 'primary',
-				)
-			);
-			?>
-		</div>
-	<?php endforeach; ?>
-</div>
+<?php
+get_template_part(
+	'template-parts/pricing-cards',
+	null,
+	array(
+		'formules'   => $formules,
+		'abonnement' => $abonnement,
+	)
+);
+?>
 
 <p class="pricing-footnote">
 	<?php esc_html_e( 'L\'abonnement Suivi & Évolution peut aussi être souscrit seul, sans automatisation initiale.', 'cosmartis' ); ?>
