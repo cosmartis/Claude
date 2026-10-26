@@ -145,6 +145,26 @@ $cta_label      = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 	</div>
 </section>
 
+<section id="sites">
+	<div class="container">
+		<div class="section-head">
+			<span class="eyebrow"><?php esc_html_e( 'Création de site internet', 'cosmartis' ); ?></span>
+			<h2><?php esc_html_e( 'Un site rapide, clair et pensé pour générer des demandes', 'cosmartis' ); ?></h2>
+		</div>
+		<?php get_template_part( 'template-parts/pricing-grid-sites' ); ?>
+	</div>
+</section>
+
+<section id="tout-en-un">
+	<div class="container">
+		<div class="section-head">
+			<span class="eyebrow"><?php esc_html_e( 'Offres tout-en-un', 'cosmartis' ); ?></span>
+			<h2><?php esc_html_e( 'Site internet + automatisations + CRM Notion, en un seul projet', 'cosmartis' ); ?></h2>
+		</div>
+		<?php get_template_part( 'template-parts/pricing-grid-packs' ); ?>
+	</div>
+</section>
+
 <!-- CTA milieu de page (formulation identique au hero) -->
 <section class="cta-mid">
 	<div class="container" style="text-align:center;">

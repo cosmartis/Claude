@@ -53,13 +53,14 @@ function cosmartis_trim_head() {
 add_action( 'init', 'cosmartis_trim_head' );
 
 /**
- * Liens « Tarifs » : une entrée par grille tarifaire de la page Services.
+ * Liens « Tarifs » : une entrée par grille tarifaire de la page d'accueil
+ * (les mêmes grilles existent aussi sur la page Services).
  */
 function cosmartis_tarifs_links() {
 	return array(
-		'/services/#tarifs'     => __( 'Automatisations', 'cosmartis' ),
-		'/services/#sites'      => __( 'Création de site internet', 'cosmartis' ),
-		'/services/#tout-en-un' => __( 'Offres tout-en-un', 'cosmartis' ),
+		'/#tarifs'     => __( 'Automatisations', 'cosmartis' ),
+		'/#sites'      => __( 'Création de site internet', 'cosmartis' ),
+		'/#tout-en-un' => __( 'Offres tout-en-un', 'cosmartis' ),
 	);
 }
 
@@ -91,7 +92,7 @@ function cosmartis_fallback_primary_menu() {
 	cosmartis_render_menu_items(
 		array(
 			'/services/'        => __( 'Services', 'cosmartis' ),
-			'/services/#tarifs' => array(
+			'/#tarifs'          => array(
 				'label'    => __( 'Tarifs', 'cosmartis' ),
 				'children' => cosmartis_tarifs_links(),
 			),
@@ -112,7 +113,7 @@ function cosmartis_fallback_footer_menu() {
 	cosmartis_render_menu_items(
 		array(
 			'/services/'        => __( 'Services', 'cosmartis' ),
-			'/services/#tarifs' => array(
+			'/#tarifs'          => array(
 				'label'    => __( 'Tarifs', 'cosmartis' ),
 				'children' => cosmartis_tarifs_links(),
 			),
