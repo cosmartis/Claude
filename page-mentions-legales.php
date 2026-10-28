@@ -27,6 +27,22 @@ get_header();
 	<div class="container" style="max-width:760px;">
 		<div class="entry-content legal-content">
 			<h2><?php esc_html_e( 'Éditeur du site', 'cosmartis' ); ?></h2>
+			<figure class="legal-editor-photo">
+				<picture>
+					<source srcset="<?php echo esc_url( COSMARTIS_URI . '/assets/img/hamid-dibarh.webp' ); ?>" type="image/webp" />
+					<img
+						src="<?php echo esc_url( COSMARTIS_URI . '/assets/img/hamid-dibarh.jpg' ); ?>"
+						alt="<?php esc_attr_e( 'Hamid DIBARH, fondateur de Cosmartis', 'cosmartis' ); ?>"
+						width="800"
+						height="922"
+						loading="lazy"
+					/>
+				</picture>
+				<figcaption>
+					<strong>Hamid DIBARH</strong>
+					<span class="text-muted"><?php esc_html_e( 'Fondateur de Cosmartis', 'cosmartis' ); ?></span>
+				</figcaption>
+			</figure>
 			<p>
 				<?php esc_html_e( 'Le site cosmartis.com est édité par Hamid DIBARH, entrepreneur individuel exerçant sous le nom commercial COSMARTIS.', 'cosmartis' ); ?>
 			</p>
