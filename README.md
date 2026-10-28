@@ -24,7 +24,10 @@ par une demande directe à Claude Code, pas par l'éditeur WordPress.
    - `services` → `page-services.php` (4 familles d'automatisation + tarifs)
    - `contact` → `page-contact.php` (questionnaire de qualification + widget Calendly inline)
    - `faq` → `page-faq.php`
-   - `a-propos`, `mentions-legales`, `politique-de-confidentialite`, `cas-usage` → contenu libre, gabarit générique `page.php`
+   - `a-propos` → `page-a-propos.php` (récit du fondateur, codé en dur)
+   - `mentions-legales` → `page-mentions-legales.php` (codé en dur, le contenu wp-admin est ignoré)
+   - `politique-de-confidentialite` → `page-politique-de-confidentialite.php` (contenu wp-admin + section « Assistant virtuel (IA) » codée en dur)
+   - `cas-usage` → contenu libre, gabarit générique `page.php`
 4. Définir la page d'accueil statique sur "Page d'accueil" dans
    Réglages > Lecture (utilise `front-page.php`).
 5. Dans **Personnaliser > Cosmartis — Intégrations & offre** :
@@ -76,6 +79,12 @@ par une demande directe à Claude Code, pas par l'éditeur WordPress.
   dans `cosmartis-sync.md`. Ne jamais afficher de prix fixe pour
   l'offre Sur-Mesure, ni de volume d'heures pour l'abonnement, ni le TJM
   interne (donnée à usage devis uniquement, jamais publique).
+- **Assistant virtuel** : bulle de chat en bas à droite sur toutes les pages
+  (`template-parts/chat-widget.php` + `assets/js/chat-widget.js`, styles en
+  fin de `style.css`). Appelle `COSMARTIS_CHAT_ENDPOINT` (`functions.php`) en
+  POST `{ messages: [...] }` → `{ reply }`, 8 derniers messages, 600
+  caractères max chacun ; message d'accueil fixe, jamais envoyé. Script
+  `defer`, sans dépendance ; repli Calendly + contact@ en cas d'erreur.
 - **Études de cas** : custom post type `cosmartis_case_study` avec les
   champs Client / Problème / Solution / Résultat, et une case
   "cas générique / illustratif" qui déclenche l'avertissement visuel tant
@@ -92,6 +101,9 @@ page.php                Gabarit générique (à propos, mentions légales, etc.)
 page-services.php        /services/ — 4 familles d'automatisation + tarifs
 page-contact.php         /contact/  (questionnaire + Calendly inline)
 page-faq.php             /faq/
+page-a-propos.php        /a-propos/ (photo : assets/img/hamid-dibarh.{webp,jpg})
+page-mentions-legales.php /mentions-legales/
+page-politique-de-confidentialite.php  /politique-de-confidentialite/
 index.php / single.php   Blog
 archive-cosmartis_case_study.php
 single-cosmartis_case_study.php
@@ -108,6 +120,8 @@ template-parts/
   case-studies-grid.php    Grille d'études de cas (+ fallback générique)
 assets/
   css/ (réservé, tout le CSS de base est dans style.css)
+  img/                     Photo du fondateur (WebP + JPG de repli)
   js/main.js               Menu mobile + init popup Calendly
+  js/chat-widget.js        Assistant virtuel (bulle, panneau, appel webhook)
   js/qualification-form.js Questionnaire multi-étapes + scoring + REST + prefill Calendly
 ```

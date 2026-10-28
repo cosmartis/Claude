@@ -43,6 +43,35 @@ function cosmartis_enqueue_assets() {
 		wp_enqueue_style( 'calendly-widget-css', 'https://assets.calendly.com/assets/external/widget.css', array(), null );
 	}
 
+	// Assistant virtuel (bulle de chat, toutes les pages) : script léger, sans
+	// dépendance, chargé en différé pour ne pas peser sur les Core Web Vitals.
+	wp_enqueue_script(
+		'cosmartis-chat-widget',
+		COSMARTIS_URI . '/assets/js/chat-widget.js',
+		array(),
+		cosmartis_asset_version( '/assets/js/chat-widget.js' ),
+		array(
+			'in_footer' => true,
+			'strategy'  => 'defer',
+		)
+	);
+	wp_localize_script(
+		'cosmartis-chat-widget',
+		'cosmartisChat',
+		array(
+			'endpoint'    => esc_url_raw( COSMARTIS_CHAT_ENDPOINT ),
+			'openLabel'   => __( 'Ouvrir l\'assistant virtuel', 'cosmartis' ),
+			'closeLabel'  => __( 'Fermer l\'assistant virtuel', 'cosmartis' ),
+			'typingLabel' => __( 'L\'assistant est en train d\'écrire…', 'cosmartis' ),
+			'fallback'    => sprintf(
+				/* translators: 1: lien Calendly, 2: adresse e-mail */
+				__( 'Désolé, je ne parviens pas à répondre pour le moment. Vous pouvez réserver un diagnostic gratuit ici : %1$s, ou écrire à %2$s.', 'cosmartis' ),
+				COSMARTIS_CALENDLY_URL,
+				'contact@cosmartis.com'
+			),
+		)
+	);
+
 	// is_page('contact') plutôt que is_page_template() : le gabarit page-contact.php
 	// s'applique automatiquement par slug (hiérarchie WordPress), sans sélection
 	// manuelle dans Attributs de page, donc is_page_template() ne le détecterait pas.
@@ -61,3 +90,8 @@ function cosmartis_enqueue_assets() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'cosmartis_enqueue_assets' );
+
+function cosmartis_render_chat_widget() {
+	get_template_part( 'template-parts/chat-widget' );
+}
+add_action( 'wp_footer', 'cosmartis_render_chat_widget' );

@@ -11,6 +11,8 @@ define( 'COSMARTIS_VERSION', '0.1.0' );
 define( 'COSMARTIS_DIR', get_template_directory() );
 define( 'COSMARTIS_URI', get_template_directory_uri() );
 define( 'COSMARTIS_CALENDLY_URL', 'https://calendly.com/cosmartisnewplan/30min' );
+// Webhook n8n de l'assistant virtuel (workflow 4jI6t9yB6gzZcGpF, cf. cosmartis-sync.md maj-33/34).
+define( 'COSMARTIS_CHAT_ENDPOINT', 'https://n8n.cosmartis.com/webhook/cosmartis-chat' );
 
 require COSMARTIS_DIR . '/inc/setup.php';
 require COSMARTIS_DIR . '/inc/enqueue.php';
