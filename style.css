@@ -1052,24 +1052,21 @@ section + section {
 	padding-left: 1.2em;
 }
 
-/* Photo de l'éditeur, flottante à droite du bloc « Éditeur du site » */
+/* Photo de l'éditeur (détourée, posée sans cadre sur le fond de la page),
+   flottante à droite du bloc « Éditeur du site » */
 .legal-editor-photo {
 	float: right;
 	width: 200px;
 	margin: 0 0 16px 24px;
-	background: radial-gradient(ellipse at 50% 35%, #1f3a32 0%, var(--c-surface) 55%, var(--c-bg-alt) 100%);
-	border: 1px solid var(--c-border);
-	border-radius: var(--c-radius);
-	overflow: hidden;
 }
 
 .legal-editor-photo figcaption {
 	display: flex;
 	flex-direction: column;
-	padding: 10px 14px;
+	align-items: center;
+	padding-top: 10px;
 	font-size: 0.9rem;
-	background: var(--c-surface);
-	border-top: 1px solid var(--c-border);
+	text-align: center;
 }
 
 .legal-content h2 {
@@ -1094,24 +1091,19 @@ section + section {
 
 .about-founder__photo {
 	margin: 0;
-	background: radial-gradient(ellipse at 50% 35%, #1f3a32 0%, var(--c-surface) 55%, var(--c-bg-alt) 100%);
-	border: 1px solid var(--c-border);
-	border-radius: var(--c-radius);
-	overflow: hidden;
 }
 
 .about-founder__photo img,
 .legal-editor-photo img {
 	width: 100%;
-	padding: 16px 16px 0;
 }
 
 .about-founder__photo figcaption {
 	display: flex;
 	flex-direction: column;
-	padding: 16px 20px;
-	background: var(--c-surface);
-	border-top: 1px solid var(--c-border);
+	align-items: center;
+	padding-top: 16px;
+	text-align: center;
 }
 
 .about-quote {
