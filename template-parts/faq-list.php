@@ -26,7 +26,7 @@ function cosmartis_faq_items() {
 		),
 		array(
 			'q' => __( 'Combien de temps avant d\'avoir un résultat concret ?', 'cosmartis' ),
-			'a' => __( 'La plupart des premières automatisations sont livrées en 2 à 4 semaines après le diagnostic.', 'cosmartis' ),
+			'a' => __( 'La plupart des premières automatisations sont livrées en 1 à 2 semaines après le diagnostic.', 'cosmartis' ),
 		),
 		array(
 			'q' => __( 'Je ne suis pas du tout technique, est-ce un problème ?', 'cosmartis' ),

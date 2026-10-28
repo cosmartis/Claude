@@ -43,7 +43,7 @@ $formules = array(
 			__( 'Tableau de bord de suivi', 'cosmartis' ),
 			__( 'Formation de l\'équipe + documentation complète', 'cosmartis' ),
 			__( '60 jours de support inclus', 'cosmartis' ),
-			__( 'Délai indicatif : 3 à 4 semaines', 'cosmartis' ),
+			__( 'Délai indicatif : 1 à 2 semaines', 'cosmartis' ),
 		),
 		'cta_label' => __( 'Réserver mon diagnostic gratuit', 'cosmartis' ),
 	),
