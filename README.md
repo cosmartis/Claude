@@ -101,7 +101,7 @@ page.php                Gabarit générique (à propos, mentions légales, etc.)
 page-services.php        /services/ — 4 familles d'automatisation + tarifs
 page-contact.php         /contact/  (questionnaire + Calendly inline)
 page-faq.php             /faq/
-page-a-propos.php        /a-propos/ (photo : assets/img/hamid-dibarh.{webp,jpg})
+page-a-propos.php        /a-propos/ (photo : assets/img/hamid-dibarh.{webp,png})
 page-mentions-legales.php /mentions-legales/
 page-politique-de-confidentialite.php  /politique-de-confidentialite/
 index.php / single.php   Blog
@@ -120,7 +120,7 @@ template-parts/
   case-studies-grid.php    Grille d'études de cas (+ fallback générique)
 assets/
   css/ (réservé, tout le CSS de base est dans style.css)
-  img/                     Photo du fondateur (WebP + JPG de repli)
+  img/                     Photo du fondateur détourée (WebP + PNG de repli)
   js/main.js               Menu mobile + init popup Calendly
   js/chat-widget.js        Assistant virtuel (bulle, panneau, appel webhook)
   js/qualification-form.js Questionnaire multi-étapes + scoring + REST + prefill Calendly

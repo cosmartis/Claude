@@ -35,10 +35,10 @@ $cta_label = __( 'Réserver mon diagnostic gratuit', 'cosmartis' );
 				<picture>
 					<source srcset="<?php echo esc_url( COSMARTIS_URI . '/assets/img/hamid-dibarh.webp' ); ?>" type="image/webp" />
 					<img
-						src="<?php echo esc_url( COSMARTIS_URI . '/assets/img/hamid-dibarh.jpg' ); ?>"
+						src="<?php echo esc_url( COSMARTIS_URI . '/assets/img/hamid-dibarh.png' ); ?>"
 						alt="<?php esc_attr_e( 'Hamid DIBARH, fondateur de Cosmartis', 'cosmartis' ); ?>"
-						width="800"
-						height="922"
+						width="465"
+						height="536"
 						fetchpriority="high"
 					/>
 				</picture>

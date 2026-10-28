@@ -1057,7 +1057,7 @@ section + section {
 	float: right;
 	width: 200px;
 	margin: 0 0 16px 24px;
-	background: #000;
+	background: radial-gradient(ellipse at 50% 35%, #1f3a32 0%, var(--c-surface) 55%, var(--c-bg-alt) 100%);
 	border: 1px solid var(--c-border);
 	border-radius: var(--c-radius);
 	overflow: hidden;
@@ -1094,10 +1094,16 @@ section + section {
 
 .about-founder__photo {
 	margin: 0;
-	background: #000;
+	background: radial-gradient(ellipse at 50% 35%, #1f3a32 0%, var(--c-surface) 55%, var(--c-bg-alt) 100%);
 	border: 1px solid var(--c-border);
 	border-radius: var(--c-radius);
 	overflow: hidden;
+}
+
+.about-founder__photo img,
+.legal-editor-photo img {
+	width: 100%;
+	padding: 16px 16px 0;
 }
 
 .about-founder__photo figcaption {
