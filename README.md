@@ -28,6 +28,10 @@ par une demande directe à Claude Code, pas par l'éditeur WordPress.
    - `mentions-legales` → `page-mentions-legales.php` (codé en dur, le contenu wp-admin est ignoré)
    - `politique-de-confidentialite` → `page-politique-de-confidentialite.php` (contenu wp-admin + section « Assistant virtuel (IA) » codée en dur)
    - `cas-usage` → contenu libre, gabarit générique `page.php`
+
+   Les pages `a-propos`, `mentions-legales` et `politique-de-confidentialite`
+   sont créées automatiquement par le thème si elles manquent
+   (`cosmartis_ensure_static_pages()` dans `inc/setup.php`).
 4. Définir la page d'accueil statique sur "Page d'accueil" dans
    Réglages > Lecture (utilise `front-page.php`).
 5. Dans **Personnaliser > Cosmartis — Intégrations & offre** :
@@ -97,7 +101,8 @@ functions.php
 style.css
 header.php / footer.php
 front-page.php          Accueil (page de conversion principale)
-page.php                Gabarit générique (à propos, mentions légales, etc.)
+page.php                Gabarit générique (cas d'usage, etc.)
+404.php                 Page introuvable
 page-services.php        /services/ — 4 familles d'automatisation + tarifs
 page-contact.php         /contact/  (questionnaire + Calendly inline)
 page-faq.php             /faq/

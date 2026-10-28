@@ -126,3 +126,49 @@ function cosmartis_fallback_footer_menu() {
 		)
 	);
 }
+
+/**
+ * Pages dont le contenu est codé en dur dans un gabarit page-{slug}.php :
+ * elles doivent exister dans WordPress pour que leur URL réponde, mais leur
+ * contenu wp-admin est ignoré. Le thème les crée (ou les republie si elles
+ * sont en brouillon) une seule fois par version de cette liste, pour ne pas
+ * dépendre d'une manipulation dans wp-admin après un déploiement.
+ */
+function cosmartis_ensure_static_pages() {
+	$version = '1';
+	if ( get_option( 'cosmartis_static_pages_version' ) === $version ) {
+		return;
+	}
+
+	$pages = array(
+		'a-propos'                     => __( 'À propos', 'cosmartis' ),
+		'mentions-legales'             => __( 'Mentions légales', 'cosmartis' ),
+		'politique-de-confidentialite' => __( 'Politique de confidentialité', 'cosmartis' ),
+	);
+
+	foreach ( $pages as $slug => $title ) {
+		$page = get_page_by_path( $slug, OBJECT, 'page' );
+
+		if ( ! $page ) {
+			wp_insert_post(
+				array(
+					'post_type'    => 'page',
+					'post_status'  => 'publish',
+					'post_title'   => $title,
+					'post_name'    => $slug,
+					'post_content' => '',
+				)
+			);
+		} elseif ( in_array( $page->post_status, array( 'draft', 'pending', 'private' ), true ) ) {
+			wp_update_post(
+				array(
+					'ID'          => $page->ID,
+					'post_status' => 'publish',
+				)
+			);
+		}
+	}
+
+	update_option( 'cosmartis_static_pages_version', $version );
+}
+add_action( 'init', 'cosmartis_ensure_static_pages', 20 );
