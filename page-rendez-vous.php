@@ -7,6 +7,8 @@
  * directement l'agenda de réservation COSMARTIS_CALENDLY_URL en widget
  * inline, sans questionnaire préalable (contrairement à /contact/).
  * La page est créée automatiquement par cosmartis_ensure_static_pages().
+ * Le contenu éventuellement saisi dans wp-admin (titre, image…) est affiché
+ * au-dessus de l'agenda.
  *
  * Sans consentement aux cookies fonctionnels, le widget tiers n'est pas
  * chargé : le bouton rendu côté serveur ci-dessous reste alors affiché et
@@ -27,6 +29,24 @@ get_header();
 		<p class="lede"><?php esc_html_e( '30 minutes pour faire le point sur votre activité et identifier ce qui peut être automatisé. Choisissez votre créneau ci-dessous.', 'cosmartis' ); ?></p>
 	</div>
 </section>
+
+<?php
+// Contenu saisi dans wp-admin (titre, visuel…) conservé au-dessus de l'agenda.
+while ( have_posts() ) :
+	the_post();
+	if ( '' !== trim( get_the_content() ) ) :
+		?>
+		<section style="padding-top:0;padding-bottom:24px;">
+			<div class="container" style="max-width:760px;">
+				<div class="entry-content">
+					<?php the_content(); ?>
+				</div>
+			</div>
+		</section>
+		<?php
+	endif;
+endwhile;
+?>
 
 <section id="reservation" style="padding-top:0;">
 	<div class="container">
