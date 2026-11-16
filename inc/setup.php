@@ -58,9 +58,12 @@ add_action( 'init', 'cosmartis_trim_head' );
  */
 function cosmartis_tarifs_links() {
 	return array(
-		'/#tarifs'     => __( 'Automatisations', 'cosmartis' ),
-		'/#sites'      => __( 'Création de site internet', 'cosmartis' ),
-		'/#tout-en-un' => __( 'Offres tout-en-un', 'cosmartis' ),
+		'/#tarifs'                    => __( 'Prospection automatisée', 'cosmartis' ),
+		'/solopreneurs/'              => __( 'Solopreneurs', 'cosmartis' ),
+		'/tpe-pme/'                   => __( 'TPE / PME', 'cosmartis' ),
+		'/experts-comptables/'        => __( 'Experts-comptables', 'cosmartis' ),
+		'/artisans/'                  => __( 'Artisans', 'cosmartis' ),
+		'/creation-de-site-internet/' => __( 'Création de site internet', 'cosmartis' ),
 	);
 }
 
@@ -91,15 +94,15 @@ function cosmartis_render_menu_items( $pages ) {
 function cosmartis_fallback_primary_menu() {
 	cosmartis_render_menu_items(
 		array(
-			'/services/'        => __( 'Services', 'cosmartis' ),
-			'/#tarifs'          => array(
-				'label'    => __( 'Tarifs', 'cosmartis' ),
-				'children' => cosmartis_tarifs_links(),
-			),
-			'/cas-usage/'       => __( "Cas d'usage", 'cosmartis' ),
-			'/etudes-de-cas/'   => __( 'Études de cas', 'cosmartis' ),
-			'/blog/'            => __( 'Blog', 'cosmartis' ),
-			'/contact/'         => __( 'Contact', 'cosmartis' ),
+			'/#tarifs'                    => __( 'Prospection', 'cosmartis' ),
+			'/solopreneurs/'              => __( 'Solopreneurs', 'cosmartis' ),
+			'/tpe-pme/'                   => __( 'TPE / PME', 'cosmartis' ),
+			'/experts-comptables/'        => __( 'Comptables', 'cosmartis' ),
+			'/artisans/'                  => __( 'Artisans', 'cosmartis' ),
+			'/creation-de-site-internet/' => __( 'Sites internet', 'cosmartis' ),
+			'/services/'                  => __( 'Services', 'cosmartis' ),
+			'/blog/'                      => __( 'Blog', 'cosmartis' ),
+			'/contact/'                   => __( 'Contact', 'cosmartis' ),
 		)
 	);
 }
@@ -112,17 +115,19 @@ function cosmartis_fallback_primary_menu() {
 function cosmartis_fallback_footer_menu() {
 	cosmartis_render_menu_items(
 		array(
-			'/services/'        => __( 'Services', 'cosmartis' ),
-			'/#tarifs'          => array(
-				'label'    => __( 'Tarifs', 'cosmartis' ),
-				'children' => cosmartis_tarifs_links(),
-			),
-			'/cas-usage/'       => __( "Cas d'usage", 'cosmartis' ),
-			'/etudes-de-cas/'   => __( 'Études de cas', 'cosmartis' ),
-			'/blog/'            => __( 'Blog', 'cosmartis' ),
-			'/contact/'         => __( 'Contact', 'cosmartis' ),
-			'/a-propos/'        => __( 'À propos', 'cosmartis' ),
-			'/faq/'             => __( 'FAQ', 'cosmartis' ),
+			'/services/'                  => __( 'Services', 'cosmartis' ),
+			'/#tarifs'                    => __( 'Prospection automatisée', 'cosmartis' ),
+			'/solopreneurs/'              => __( 'Solopreneurs', 'cosmartis' ),
+			'/tpe-pme/'                   => __( 'TPE / PME', 'cosmartis' ),
+			'/experts-comptables/'        => __( 'Experts-comptables', 'cosmartis' ),
+			'/artisans/'                  => __( 'Artisans', 'cosmartis' ),
+			'/creation-de-site-internet/' => __( 'Création de site internet', 'cosmartis' ),
+			'/cas-usage/'                 => __( 'Cas d’usage', 'cosmartis' ),
+			'/etudes-de-cas/'             => __( 'Études de cas', 'cosmartis' ),
+			'/blog/'                      => __( 'Blog', 'cosmartis' ),
+			'/contact/'                   => __( 'Contact', 'cosmartis' ),
+			'/a-propos/'                  => __( 'À propos', 'cosmartis' ),
+			'/faq/'                       => __( 'FAQ', 'cosmartis' ),
 		)
 	);
 }

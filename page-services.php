@@ -79,6 +79,24 @@ $families = array(
 	</div>
 </section>
 
+<section id="prospection">
+	<div class="container">
+		<div class="section-head">
+			<span class="eyebrow">Prospection automatisée</span>
+			<h2>Des rendez-vous qualifiés dans votre agenda, sans prospecter vous-même</h2>
+			<p class="text-muted">Prospection par e-mail, par téléphone avec un assistant vocal IA, ou les deux : une offre claire pour chaque canal.</p>
+		</div>
+		<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+			<a class="btn btn-primary" href="/#tarifs">Voir les 3 offres de prospection</a>
+			<a class="btn btn-secondary" href="/experts-comptables/">Experts-comptables</a>
+			<a class="btn btn-secondary" href="/artisans/">Artisans</a>
+			<a class="btn btn-secondary" href="/solopreneurs/">Solopreneurs</a>
+			<a class="btn btn-secondary" href="/tpe-pme/">TPE / PME</a>
+			<a class="btn btn-secondary" href="/creation-de-site-internet/">Création de site internet</a>
+		</div>
+	</div>
+</section>
+
 <section id="tarifs">
 	<div class="container">
 		<div class="section-head">
