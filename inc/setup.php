@@ -140,7 +140,7 @@ function cosmartis_fallback_footer_menu() {
  * dépendre d'une manipulation dans wp-admin après un déploiement.
  */
 function cosmartis_ensure_static_pages() {
-	$version = '1';
+	$version = '2';
 	if ( get_option( 'cosmartis_static_pages_version' ) === $version ) {
 		return;
 	}
@@ -149,6 +149,7 @@ function cosmartis_ensure_static_pages() {
 		'a-propos'                     => __( 'À propos', 'cosmartis' ),
 		'mentions-legales'             => __( 'Mentions légales', 'cosmartis' ),
 		'politique-de-confidentialite' => __( 'Politique de confidentialité', 'cosmartis' ),
+		'rendez-vous'                  => __( 'Rendez-vous', 'cosmartis' ),
 	);
 
 	foreach ( $pages as $slug => $title ) {

@@ -72,6 +72,10 @@ function cosmartis_enqueue_assets() {
 		)
 	);
 
+	if ( is_page( 'rendez-vous' ) ) {
+		wp_enqueue_script( 'cosmartis-rendez-vous', COSMARTIS_URI . '/assets/js/rendez-vous.js', array(), cosmartis_asset_version( '/assets/js/rendez-vous.js' ), true );
+	}
+
 	// is_page('contact') plutôt que is_page_template() : le gabarit page-contact.php
 	// s'applique automatiquement par slug (hiérarchie WordPress), sans sélection
 	// manuelle dans Attributs de page, donc is_page_template() ne le détecterait pas.
