@@ -144,6 +144,12 @@
 			},
 			body: JSON.stringify( payload ),
 		} )
+			.then( function ( response ) {
+				if ( response && response.ok ) {
+					// Conversion "Lead" (Pixel Meta, si consentement marketing).
+					document.dispatchEvent( new CustomEvent( 'cosmartis:lead' ) );
+				}
+			} )
 			.catch( function () {
 				// Le formulaire reste utile même en cas d'échec réseau : on
 				// n'empêche jamais l'utilisateur d'aller jusqu'à la réservation.

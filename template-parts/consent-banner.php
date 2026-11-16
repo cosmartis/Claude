@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			printf(
 				/* translators: %s: link to the privacy policy page. */
-				esc_html__( 'Nous utilisons des cookies strictement nécessaires au fonctionnement du site et, avec votre accord, des cookies fonctionnels (widget de prise de rendez-vous Calendly). Vous pouvez accepter, refuser ou personnaliser vos choix, et en changer à tout moment. %s', 'cosmartis' ),
+				esc_html__( 'Nous utilisons des cookies strictement nécessaires au fonctionnement du site et, avec votre accord, des cookies fonctionnels (widget de prise de rendez-vous Calendly) et des cookies publicitaires (Meta) pour mesurer l\'efficacité de nos publicités. Vous pouvez accepter, refuser ou personnaliser vos choix, et en changer à tout moment. %s', 'cosmartis' ),
 				'<a href="' . esc_url( home_url( '/politique-de-confidentialite/' ) ) . '">' . esc_html__( 'En savoir plus', 'cosmartis' ) . '</a>'
 			);
 			?>
@@ -47,6 +47,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<input type="checkbox" id="consent-functional" name="consent-functional" />
 				</div>
 				<p class="text-muted"><?php esc_html_e( 'Permettent d\'afficher le widget de prise de rendez-vous Calendly directement sur le site. Si vous refusez, la réservation s\'ouvre dans un nouvel onglet sur le site de Calendly.', 'cosmartis' ); ?></p>
+			</div>
+
+			<div class="cookie-consent-modal__category">
+				<div class="cookie-consent-modal__category-head">
+					<label for="consent-marketing"><?php esc_html_e( 'Cookies publicitaires (Meta)', 'cosmartis' ); ?></label>
+					<input type="checkbox" id="consent-marketing" name="consent-marketing" />
+				</div>
+				<p class="text-muted"><?php esc_html_e( 'Permettent à Meta (Facebook, Instagram) de mesurer l\'efficacité de nos publicités : pages vues, demandes de contact et rendez-vous pris depuis ce site. Désactivés par défaut.', 'cosmartis' ); ?></p>
 			</div>
 
 			<div class="cookie-consent-modal__actions">

@@ -3,7 +3,7 @@
 
 	var COOKIE_NAME = 'cosmartis_consent';
 	var COOKIE_MAX_AGE_DAYS = 180; // Recommandation CNIL : ne pas dépasser 13 mois.
-	var CONSENT_VERSION = 1;
+	var CONSENT_VERSION = 2; // v2 : ajout de la finalité "marketing" (Pixel Meta) → choix redemandé.
 
 	function readConsent() {
 		var match = document.cookie.match( new RegExp( '(?:^|; )' + COOKIE_NAME + '=([^;]*)' ) );
@@ -58,6 +58,7 @@
 		}
 
 		var functionalToggle = modal.querySelector( '#consent-functional' );
+		var marketingToggle = modal.querySelector( '#consent-marketing' );
 
 		function showBanner() {
 			banner.hidden = false;
@@ -70,10 +71,11 @@
 			document.body.classList.remove( 'has-cookie-banner' );
 		}
 
-		function saveConsent( functional ) {
+		function saveConsent( functional, marketing ) {
 			var consent = {
 				necessary: true,
 				functional: !! functional,
+				marketing: !! marketing,
 				timestamp: new Date().toISOString(),
 				version: CONSENT_VERSION,
 			};
@@ -87,20 +89,27 @@
 			if ( functionalToggle ) {
 				functionalToggle.checked = stored ? !! stored.functional : true;
 			}
+			if ( marketingToggle ) {
+				// Publicitaire : décoché par défaut tant qu'aucun accord explicite.
+				marketingToggle.checked = stored ? !! stored.marketing : false;
+			}
 			banner.hidden = false;
 			modal.hidden = false;
 			document.body.classList.add( 'has-cookie-banner' );
 		}
 
 		banner.querySelector( '.js-consent-accept-all' ).addEventListener( 'click', function () {
-			saveConsent( true );
+			saveConsent( true, true );
 		} );
 		banner.querySelector( '.js-consent-reject-all' ).addEventListener( 'click', function () {
-			saveConsent( false );
+			saveConsent( false, false );
 		} );
 		banner.querySelector( '.js-consent-customize' ).addEventListener( 'click', openModal );
 		modal.querySelector( '.js-consent-save' ).addEventListener( 'click', function () {
-			saveConsent( functionalToggle && functionalToggle.checked );
+			saveConsent(
+				functionalToggle && functionalToggle.checked,
+				marketingToggle && marketingToggle.checked
+			);
 		} );
 		modal.querySelector( '.js-consent-close' ).addEventListener( 'click', function () {
 			modal.hidden = true;

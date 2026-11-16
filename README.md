@@ -89,6 +89,15 @@ par une demande directe à Claude Code, pas par l'éditeur WordPress.
   POST `{ messages: [...] }` → `{ reply }`, 8 derniers messages, 600
   caractères max chacun ; message d'accueil fixe, jamais envoyé. Script
   `defer`, sans dépendance ; repli Calendly + contact@ en cas d'erreur.
+- **Pixel Meta (ID 1810473263551718)** : `assets/js/meta-pixel.js`, chargé
+  **uniquement** après consentement « Cookies publicitaires (Meta) »
+  (catégorie `marketing` du cookie `cosmartis_consent`, version 2). Aucun
+  appel vers facebook.net avant. Évènements : `PageView`, `Lead`
+  (`wpcf7mailsent` ou questionnaire de qualification réussi →
+  `cosmartis:lead`), `Schedule` (postMessage Calendly
+  `calendly.event_scheduled`). Retrait via « Gérer les cookies » →
+  `fbq('consent','revoke')` + suppression `_fbp`/`_fbc`. Après tout
+  déploiement : purger le cache LiteSpeed / Hostinger.
 - **Études de cas** : custom post type `cosmartis_case_study` avec les
   champs Client / Problème / Solution / Résultat, et une case
   "cas générique / illustratif" qui déclenche l'avertissement visuel tant
@@ -128,5 +137,7 @@ assets/
   img/                     Photo du fondateur détourée (WebP + PNG de repli)
   js/main.js               Menu mobile + init popup Calendly
   js/chat-widget.js        Assistant virtuel (bulle, panneau, appel webhook)
+  js/consent.js            Bannière cookies RGPD (necessary / functional / marketing)
+  js/meta-pixel.js         Pixel Meta, chargé seulement après consentement marketing
   js/qualification-form.js Questionnaire multi-étapes + scoring + REST + prefill Calendly
 ```
