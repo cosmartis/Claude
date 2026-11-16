@@ -50,6 +50,12 @@
 		script.src = 'https://connect.facebook.net/en_US/fbevents.js';
 		document.head.appendChild( script );
 
+		// Désactive le suivi automatique des clics de Meta (SubscribedButtonClick) :
+		// il envoie le texte des boutons cliqués, y compris le clic sur
+		// « Enregistrer mes préférences » qui retire le consentement (ce clic
+		// est capté avant que le retrait ne s'applique). On n'envoie que nos
+		// évènements explicites : PageView, Lead, Schedule.
+		window.fbq( 'set', 'autoConfig', false, PIXEL_ID );
 		window.fbq( 'init', PIXEL_ID );
 		window.fbq( 'track', 'PageView' );
 	}
