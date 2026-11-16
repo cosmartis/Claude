@@ -74,6 +74,10 @@ par une demande directe à Claude Code, pas par l'éditeur WordPress.
   constante `COSMARTIS_CALENDLY_URL` (`functions.php`). Toujours affiché
   comme widget (popup dans le header/CTA, widget inline sur la page
   Contact/Réservation), jamais comme simple lien de sortie.
+  Adresse courte à partager : **`/rendez-vous/`** (`page-rendez-vous.php`,
+  page créée automatiquement) affiche directement l'agenda en widget
+  inline, sans questionnaire ; bouton de secours vers le même lien tant
+  que les cookies fonctionnels ne sont pas acceptés.
 - **Tarifs** : diagnostic gratuit en intro, puis 3 formules (Première
   Automatisation, Système Complet, Sur-Mesure) centralisées dans
   `template-parts/pricing-grid.php` — l'abonnement Suivi & Évolution

@@ -709,6 +709,18 @@ section + section {
 	height: 700px;
 }
 
+/* Page /rendez-vous/ : bouton de secours tant que l'agenda n'est pas chargé */
+.rdv-embed-fallback {
+	margin: 0;
+	padding: 48px 24px;
+	text-align: center;
+}
+
+.rdv-embed.is-loaded {
+	min-width: 280px;
+	height: 700px;
+}
+
 /* Qualification form */
 .qual-form {
 	background: var(--c-surface);
